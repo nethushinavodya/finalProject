@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="868.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.AdminControllers.AddRoomController">
+   <ImageView fitHeight="807.0" fitWidth="1130.0" layoutY="61.0">
+      <image>
+         <Image url="@../Images/Black bathroom with pink led lights_.jpeg" />
+      </image>
+   </ImageView>
+   <Pane layoutX="32.0" layoutY="68.0" prefHeight="545.0" prefWidth="1064.0" style="-fx-border-color: #FF007F; -fx-border-width: 2; -fx-background-color: rgba(42, 46, 55, 0.9);">
+      <children>
+      
+          <!-- Buttons -->
+          <Button layoutX="514.0" layoutY="214.0" onAction="#handleSave" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #333333; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-background-radius: 20; -fx-font-size: 16px; -fx-text-fill: #FFFFFF; -fx-border-width: 3;" text="Save" />
+          <Button layoutX="690.0" layoutY="214.0" onAction="#handleUpdate" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #333333; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-background-radius: 20; -fx-font-size: 16px; -fx-text-fill: #FFFFFF; -fx-border-width: 3;" text="Update" />
+          <Button layoutX="870.0" layoutY="214.0" onAction="#handleDelete" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #333333; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-background-radius: 20; -fx-font-size: 16px; -fx-text-fill: #FFFFFF; -fx-border-width: 3;" text="Delete" />
+          <TextField fx:id="addRoomNumber" layoutX="182.0" layoutY="90.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter Room No" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #00B7FF; -fx-background-color: #2A2E37; -fx-text-fill: #FFFFFF;" />
+          <TextField fx:id="addRoomId" layoutX="182.0" layoutY="31.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter Room Id" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #00B7FF; -fx-background-color: #2A2E37; -fx-text-fill: #FFFFFF;" />
+          <ComboBox fx:id="addRoomType" layoutX="182.0" layoutY="149.0" prefHeight="35.0" prefWidth="250.0" promptText="Select Room Type Id" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #00B7FF; -fx-text-fill: #FFFFFF;" />
+          <ComboBox fx:id="roomStCmb" layoutX="182.0" layoutY="209.0" prefHeight="35.0" prefWidth="250.0" promptText="Select Room Status" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #00B7FF; -fx-text-fill: #FFFFFF;" />
+      
+          <Label layoutX="31.0" layoutY="151.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #00B7FF; -fx-font-size: 16px;" text="Room Type Id :" />
+      
+          <Label layoutX="31.0" layoutY="92.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #00B7FF; -fx-font-size: 16px;" text="Room Number :" />
+      
+          <!-- Input Fields -->
+          <Label layoutX="31.0" layoutY="33.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #00B7FF; -fx-font-size: 16px;" text="Room ID :" />
+      
+          <Label layoutX="31.0" layoutY="211.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-text-fill: #00B7FF; -fx-font-size: 16px;" text="Room Status:" />
+      </children>
+   </Pane>
+    <!-- Header -->
+    <VBox alignment="CENTER" prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #1a1a1a;">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Add Room">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <!-- Table View -->
+    <TableView fx:id="tableView" layoutX="60.0" layoutY="340.0" onMouseClicked="#tableRoom" onMousePressed="#tableRoom" prefHeight="255.0" prefWidth="991.0" style="-fx-border-color: #00B7FF; -fx-border-width: 2;">
+        <columns>
+            <TableColumn fx:id="roomId" prefWidth="201.0" text="Room ID" />
+            <TableColumn fx:id="roomNumber" prefWidth="224.0" text="Room Number" />
+            <TableColumn fx:id="roomTypeId" prefWidth="315.0" text="Room Type ID" />
+            <TableColumn fx:id="roomStatus" prefWidth="248.0" text="Room Status" />
+        </columns>
+    </TableView>
+
+    <!-- Add Inventory -->
+    <VBox alignment="CENTER" layoutY="618.0" prefHeight="62.0" prefWidth="1130.0" style="-fx-background-color: #1a1a1a;">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 20px; -fx-font-weight: bold;" text="Add Inventory Item" />
+    </VBox>
+   <Pane layoutX="32.0" layoutY="686.0" prefHeight="171.0" prefWidth="1064.0" style="-fx-border-width: 2; -fx-background-color: rgba(42, 46, 55, 0.9); -fx-border-color: #FF007F;">
+      <children>
+          <Label layoutX="32.0" layoutY="30.0" prefHeight="30.0" prefWidth="138.0" style="-fx-font-weight: bold; -fx-text-fill: #00B7FF; -fx-font-size: 16px;" text="Room ID:" />
+      
+                <Label layoutX="32.0" layoutY="85.0" prefHeight="30.0" prefWidth="138.0" style="-fx-font-weight: bold; -fx-text-fill: #00B7FF; -fx-font-size: 16px; " text="Inventory ID:" />
+          <ComboBox fx:id="roomIdCmb" layoutX="170.0" layoutY="27.0" prefHeight="35.0" prefWidth="250.0" promptText="Select Room Id" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #00B7FF; -fx-text-fill: #FFFFFF;" />
+          <ComboBox fx:id="inventoryIdCmb" layoutX="170.0" layoutY="82.0" prefHeight="35.0" prefWidth="250.0" promptText="Select Inventory Id" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #00B7FF; -fx-text-fill: #FFFFFF;" />
+      </children>
+   </Pane>
+
+    <Button layoutX="520.0" layoutY="771.0" onAction="#handleInventory" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #333333; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-font-size: 16px; -fx-text-fill: #FFFFFF; -fx-background-radius: 20; -fx-border-width: 3;" text="Add Item" />
+</AnchorPane>

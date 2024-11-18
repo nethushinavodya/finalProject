@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.AdminControllers.AdminDashboardController">
+   <AnchorPane fx:id="mainContentArea" layoutX="325.0" layoutY="80.0" prefHeight="865.0" prefWidth="1139.0" style="-fx-border-color: #FF007F;" />
+
+    <!-- Header -->
+    <VBox alignment="CENTER_RIGHT" layoutX="0.0" layoutY="0.0" prefHeight="80.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
+        <children>
+            <Button alignment="CENTER_RIGHT" onAction="#logout" prefHeight="70.0" prefWidth="263.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000;" text="Logout        ">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <InnerShadow />
+                </effect>
+                <graphic>
+                    <ImageView fitHeight="60.0" fitWidth="66.0">
+                        <image>
+                            <Image url="@../Images/logout_10008402.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </children>
+    </VBox>
+
+    <!-- Sidebar -->
+    <VBox layoutY="81.0" prefHeight="865.0" prefWidth="325.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
+   
+           <!-- Label - "Admin Dashboard" -->
+        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="282.0" prefWidth="322.0" style="-fx-border-color: FF007FFF;" textAlignment="JUSTIFY" textFill="#00b6ff" underline="true" wrapText="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+         <graphic>
+            <ImageView fitHeight="138.0" fitWidth="182.0">
+               <image>
+                  <Image url="@../Images/crystalwave.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Label>
+
+        <!-- Buttons with bottom border only -->
+        <Button onAction="#navigateToRoomManagement" prefHeight="60.0" prefWidth="284.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Room Management      " textAlignment="JUSTIFY" wrapText="true">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <InnerShadow />
+            </effect>
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="57.0">
+               <image>
+                  <Image url="@../Images/room.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Button>
+        <Button onAction="#navigateToEmployeeManagement" prefHeight="60.0" prefWidth="287.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Employee Management" textAlignment="JUSTIFY" wrapText="true">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <InnerShadow />
+            </effect>
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="56.0">
+               <image>
+                  <Image url="@../Images/employee.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Button>
+        <Button onAction="#navigateToInventory" prefHeight="62.0" prefWidth="288.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Inventory Management" textAlignment="JUSTIFY" wrapText="true">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <InnerShadow />
+            </effect>
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="56.0">
+               <image>
+                  <Image url="@../Images/inventory.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Button>
+        <Button onAction="#navigateToReports" prefHeight="60.0" prefWidth="280.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Reports                  " textAlignment="JUSTIFY" wrapText="true">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <InnerShadow />
+            </effect>
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="54.0">
+               <image>
+                  <Image url="@../Images/report1.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Button>
+        <Button layoutX="10.0" layoutY="190.0" onAction="#navigateToDiscounts" prefHeight="68.0" prefWidth="280.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Discounts               " textAlignment="JUSTIFY" wrapText="true">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <InnerShadow />
+            </effect>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="54.0">
+               <image>
+                  <Image url="@../Images/discount.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Button>
+        <ButtonBar />
+    </VBox>
+
+    <!-- Footer -->
+    <HBox alignment="CENTER" layoutY="945.0" prefHeight="55.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
+        <Label style="-fx-text-fill: FF007FFF;" text="CRYSTALWAVE HOTEL © 2024" />
+    </HBox>
+   <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="10.0" layoutY="10.0">
+      <image>
+         <Image url="@../Images/technical-support_13366793.png" />
+      </image>
+   </ImageView>
+   <Label layoutX="84.0" layoutY="14.0" prefHeight="55.0" prefWidth="243.0" text="Administration" textFill="#09c6e5">
+      <font>
+         <Font name="System Bold" size="24.0" />
+      </font>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+   </Label>
+</AnchorPane>

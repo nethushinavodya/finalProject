@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="868.0" prefWidth="1126.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.AdminControllers.AddServiceController">
+   <Pane layoutX="61.0" layoutY="260.0" prefHeight="391.0" prefWidth="1009.0" style="-fx-background-color: rgba(42, 46, 55, 0.9); -fx-border-color: #FF007F; -fx-border-width: 2;">
+      <children>
+          <TextField fx:id="servicePrice" layoutX="30.0" layoutY="276.0" prefHeight="35.0" prefWidth="884.0" promptText="Enter Amount" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+          <!-- Employee ComboBox -->
+          <Label layoutX="30.0" layoutY="340.0" prefHeight="25.0" prefWidth="160.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Employee Id :" textFill="#00b7ff" />
+          <ComboBox fx:id="empIdCmb" layoutX="163.0" layoutY="335.0" prefHeight="35.0" prefWidth="261.0" promptText="Enter Employee Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;" />
+      
+          <Label layoutX="30.0" layoutY="241.0" prefHeight="35.0" prefWidth="95.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Price :" textFill="#00b7ff" />
+          <TextField fx:id="serviceDesc" layoutX="30.0" layoutY="206.0" prefHeight="35.0" prefWidth="884.0" promptText="Description" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+          <Label layoutX="30.0" layoutY="171.0" prefHeight="35.0" prefWidth="137.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Description" textFill="#00b7ff" />
+          <TextField fx:id="ServiceName" layoutX="30.0" layoutY="136.0" prefHeight="35.0" prefWidth="884.0" promptText="Enter Service Name" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+          <Label layoutX="30.0" layoutY="101.0" prefHeight="35.0" prefWidth="180.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Service Name :" textFill="#00b7ff" />
+          <TextField fx:id="serviceId" layoutX="30.0" layoutY="66.0" prefHeight="35.0" prefWidth="884.0" promptText="Enter Service Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+          <!-- Service Form Labels and Text Fields -->
+          <Label layoutX="30.0" layoutY="31.0" prefHeight="35.0" prefWidth="113.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Service_Id :" textFill="#00b7ff" />
+      </children>
+   </Pane>
+   <Pane layoutX="56.0" layoutY="741.0" prefHeight="113.0" prefWidth="1020.0" style="-fx-border-color: #FF007F; -fx-border-width: 2; -fx-background-color: rgba(42, 46, 55, 0.9);">
+      <children>
+      
+          <!-- Employee and Service ID ComboBoxes -->
+          <Label layoutX="55.0" layoutY="18.0" prefHeight="35.0" prefWidth="129.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Employee Id :" textFill="#00b7ff" />
+          <ComboBox fx:id="empIdCmb1" layoutX="184.0" layoutY="18.0" prefHeight="35.0" prefWidth="299.0" promptText="Enter Employee Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;" />
+      
+          <Label alignment="CENTER_RIGHT" layoutX="45.0" layoutY="61.0" prefHeight="35.0" prefWidth="129.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Service Id :" textFill="#00b7ff" />
+          <ComboBox fx:id="srviceIdCmb" layoutX="184.0" layoutY="61.0" prefHeight="35.0" prefWidth="299.0" promptText="Enter Service Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;" />
+      
+          <Button layoutX="830.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleSave1" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Add">
+              <cursor>
+                  <Cursor fx:constant="HAND" />
+              </cursor>
+          </Button>
+      </children>
+   </Pane>
+
+    <!-- Header -->
+    <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1131.0" style="-fx-background-color: #1a1a1a;">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Add Service">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <!-- Table for Services -->
+    <TableView fx:id="tableView" layoutX="61.0" layoutY="68.0" onMouseClicked="#tableView" prefHeight="182.0" prefWidth="1009.0" style="-fx-border-color: #00b7ff; -fx-border-width: 2;">
+        <columns>
+            <TableColumn fx:id="sId" prefWidth="150.0" style="-fx-text-fill: #000000;" text="Service_Id" />
+            <TableColumn fx:id="sName" minWidth="0.0" prefWidth="254.0" style="-fx-text-fill: #000000;" text="Service Name" />
+            <TableColumn fx:id="desc" prefWidth="431.0" style="-fx-text-fill: #000000;" text="Description" />
+            <TableColumn fx:id="sPrice" minWidth="0.0" prefWidth="173.0" style="-fx-text-fill: #000000;" text="Price" />
+        </columns>
+    </TableView>
+
+    <!-- Buttons -->
+    <Button layoutX="893.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Delete">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <Button layoutX="522.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Save">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <Button layoutX="703.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Update">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+
+    <!-- Footer -->
+    <VBox alignment="CENTER" layoutY="670.0" prefHeight="60.0" prefWidth="1131.0" style="-fx-background-color: #1a1a1a;">
+        <children>
+            <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 20px; -fx-font-weight: bold;" text="Add Employee_Service">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+        </children>
+    </VBox>
+
+</AnchorPane>

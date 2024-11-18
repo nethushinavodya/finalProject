@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="865.0" prefWidth="1139.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers.AddGuestController">
+    <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1139.0" style="-fx-background-color: #1a1a1a;">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Add Guests">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+    </VBox>
+    <Label layoutX="57.0" layoutY="72.0" prefHeight="38.0" prefWidth="112.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Guest Id :" textFill="#00b7ff" />
+    <TextField fx:id="Id" layoutX="57.0" layoutY="110.0" prefHeight="38.0" prefWidth="1021.0" promptText="Enter Guest Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333; -fx-text-fill:#ffffff" />
+    <Label layoutX="57.0" layoutY="148.0" prefHeight="38.0" prefWidth="112.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Name :" textFill="#00b7ff" />
+    <Label layoutX="57.0" layoutY="300.0" prefHeight="38.0" prefWidth="112.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Address :" textFill="#00b7ff" />
+    <Label layoutX="57.0" layoutY="224.0" prefHeight="38.0" prefWidth="112.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Contact No :" textFill="#00b7ff" />
+    <Label layoutX="57.0" layoutY="376.0" prefHeight="38.0" prefWidth="112.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Email :" textFill="#00b7ff" />
+    <TextField fx:id="name" layoutX="57.0" layoutY="186.0" prefHeight="38.0" prefWidth="1021.0" promptText="Enter Guest Name" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333; -fx-text-fill:#ffffff" />
+    <TextField fx:id="contactNo" layoutX="57.0" layoutY="262.0" prefHeight="38.0" prefWidth="1021.0" promptText="Enter Contact Number" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333; -fx-text-fill:#ffffff" />
+    <TextField fx:id="address" layoutX="57.0" layoutY="338.0" prefHeight="38.0" prefWidth="1021.0" promptText="Enter Address" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333; -fx-text-fill:#ffffff" />
+    <TextField fx:id="email" layoutX="57.0" layoutY="414.0" prefHeight="38.0" prefWidth="1021.0" promptText="Enter Email" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333; -fx-text-fill:#ffffff" />
+    <Button layoutX="549.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="40.0" prefWidth="155.0" style="-fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-color: #333333; -fx-background-radius: 20; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Save">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <Button layoutX="737.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="40.0" prefWidth="155.0" style="-fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-color: #333333; -fx-background-radius: 20; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Update">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <Button layoutX="923.0" layoutY="480.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="40.0" prefWidth="155.0" style="-fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-color: #333333; -fx-background-radius: 20; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Delete">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+    <TableView fx:id="tableView" layoutX="61.0" layoutY="542.0" onMouseClicked="#tableView" prefHeight="232.0" prefWidth="1021.0" style="-fx-border-color: #00b7ff; -fx-border-width: 2;">
+        <columns>
+            <TableColumn fx:id="guestId" prefWidth="83.0" style="-fx-text-fill: #000000;" text="Guest Id" />
+            <TableColumn fx:id="guestName" prefWidth="214.0" style="-fx-text-fill: #000000;" text="Name" />
+            <TableColumn fx:id="guestContactNo" prefWidth="189.0" style="-fx-text-fill: #000000;" text="Contact No" />
+            <TableColumn fx:id="guestAddress" prefWidth="294.0" style="-fx-text-fill: #000000;" text="Address" />
+            <TableColumn fx:id="guestEmail" prefWidth="238.0" style="-fx-text-fill: #000000;" text="Email" />
+        </columns>
+    </TableView>
+</AnchorPane>

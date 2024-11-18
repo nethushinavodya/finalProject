@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1132.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers.RoomController">
+    <!-- Topic Label -->
+    <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1139.0" style="-fx-background-color: #1a1a1a;">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Room Availability">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <!-- TableView for Room Availability -->
+    <TableView fx:id="roomTable" layoutX="26.0" layoutY="100.0" prefHeight="638.0" prefWidth="1088.0" style="-fx-border-color: #00b7ff; -fx-border-width: 2;">
+        <columns>
+            <TableColumn fx:id="roomIdColumn" prefWidth="198.0" text="Room ID">
+                <cellValueFactory>
+                    <PropertyValueFactory property="roomId" />
+                </cellValueFactory>
+            </TableColumn>
+         <TableColumn fx:id="roomTypeId" prefWidth="240.0" text="Room_Type Id">
+            <cellValueFactory>
+               <PropertyValueFactory property="roomStatus" />
+            </cellValueFactory>
+         </TableColumn>
+            <TableColumn fx:id="roomNumber" prefWidth="309.0" text="Room Number">
+                <cellValueFactory>
+                    <PropertyValueFactory property="roomType" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="roomStatusColumn" prefWidth="336.0" text="Room Status">
+                <cellValueFactory>
+                    <PropertyValueFactory property="roomStatus" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</AnchorPane>

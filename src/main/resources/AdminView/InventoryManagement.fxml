@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="868.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.AdminControllers.InventoryManagementController">
+   <ImageView fitHeight="809.0" fitWidth="1130.0" layoutY="59.0">
+      <image>
+         <Image url="@../Images/9f427b19034a5b3fdda49a5090b3fb1e.jpg" />
+      </image>
+   </ImageView>
+
+    <!-- Header -->
+    <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1130.0" style="-fx-background-color: #1a1a1a;">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Inventory Management">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+    </VBox>
+
+    <!-- Inventory Table -->
+    <TableView fx:id="inventoryTable" layoutX="50.0" layoutY="80.0" onMouseClicked="#inventoryTable" prefHeight="262.0" prefWidth="1020.0" style="-fx-border-color: #00b7ff; -fx-border-width: 2;">
+        <columns>
+            <TableColumn fx:id="itemIdColumn" prefWidth="180.0" style="-fx-text-fill: #000000;" text="Item Id" />
+            <TableColumn fx:id="itemNameColumn" prefWidth="200.0" style="-fx-text-fill: #000000;" text="Item Name" />
+            <TableColumn fx:id="quantityColumn" prefWidth="250.0" style="-fx-text-fill: #000000;" text="Quantity" />
+            <TableColumn fx:id="priceColumn" prefWidth="200.0" style="-fx-text-fill: #000000;" text="Price" />
+            <TableColumn fx:id="roomTypeIdColumn" prefWidth="200.0" style="-fx-text-fill: #000000;" text="Room Type Id" />
+        </columns>
+    </TableView>
+   <Pane layoutX="50.0" layoutY="353.0" prefHeight="468.0" prefWidth="1020.0" style="-fx-border-color: #FF007F; -fx-border-width: 2; -fx-background-color: rgba(42, 46, 55, 0.9);">
+      <children>
+           <Label layoutX="33.0" layoutY="41.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Item Id :" textFill="#00b7ff" />
+           <TextField fx:id="itemIdField" layoutX="33.0" layoutY="73.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Item Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+           <Label layoutX="33.0" layoutY="108.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Item Name :" textFill="#00b7ff" />
+           <TextField fx:id="itemNameField" layoutX="33.0" layoutY="140.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Item Name" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+           <Label layoutX="33.0" layoutY="175.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Quantity :" textFill="#00b7ff" />
+           <TextField fx:id="quantityField" layoutX="33.0" layoutY="207.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Quantity" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+      
+           <Label layoutX="33.0" layoutY="242.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Price :" textFill="#00b7ff" />
+           <TextField fx:id="priceField" layoutX="33.0" layoutY="274.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Price" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+            <Button layoutX="275.0" layoutY="381.0" onAction="#handleAddItem" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Add Item">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+            <Button layoutX="464.0" layoutY="380.0" onAction="#handleUpdateItem" prefHeight="37.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Update Item">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+            <Button layoutX="653.0" layoutY="380.0" onAction="#handleDeleteItem" prefHeight="37.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold;" text="Delete Item">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+            <Button layoutX="840.0" layoutY="380.0" onAction="#handleClear" prefHeight="37.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-border-color: #FF007F; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Clear">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+      </children>
+   </Pane>
+
+</AnchorPane>

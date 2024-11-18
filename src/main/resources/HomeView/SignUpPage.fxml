@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.HomeControllers.SignUpController">
+
+    <ImageView fitHeight="1000.0" fitWidth="1500.0" preserveRatio="false">
+        <image>
+            <Image url="@../Images/freepik__expand__321.png" />
+        </image>
+    </ImageView>
+
+    <AnchorPane prefHeight="1000.0" prefWidth="1500.0">
+        <Label alignment="CENTER" layoutX="908.0" layoutY="309.0" prefHeight="99.0" prefWidth="419.0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;" text="Hello, Friend" />
+        <Label layoutX="952.0" layoutY="372.0" prefHeight="128.0" prefWidth="330.0" style="-fx-font-size: 20px; -fx-text-fill: #FFFFFF;" text="Please fill out the form to create your account." textAlignment="CENTER" wrapText="true" />
+
+        <VBox alignment="CENTER" layoutX="193.0" layoutY="188.0" prefHeight="625.0" prefWidth="479.0" spacing="15" style="-fx-background-color: rgba(26, 26, 26, 0.8); -fx-background-radius: 20; -fx-padding: 30;">
+            <Label alignment="TOP_CENTER" prefHeight="99.0" prefWidth="458.0" style="-fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: #FF007F;" text="Create Account" wrapText="true" />
+
+            <!-- HBox for First Name and Last Name in the same row -->
+            <HBox spacing="15">
+                <TextField fx:id="firstNameField" prefHeight="38.0" prefWidth="204.0" promptText="First Name" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+                <TextField fx:id="lastNameField" prefHeight="38.0" prefWidth="204.0" promptText="Last Name" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            </HBox>
+
+            <TextField fx:id="phoneNumberField" promptText="Enter your phone number" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <TextField fx:id="addressField" promptText="Enter your address" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <TextField fx:id="emailField" promptText="Enter your email" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <HBox layoutX="40.0" layoutY="196.0" spacing="15">
+                <TextField fx:id="passwordField" prefHeight="38.0" prefWidth="204.0" promptText="Enter Password" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+                <TextField fx:id="confirmPasswordField" prefHeight="38.0" prefWidth="204.0" promptText="Confirm Password" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            </HBox>
+
+            <!-- HBox for Role Label and ComboBox in the same row -->
+            <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="381.0" spacing="15">
+                <Label prefHeight="20.0" prefWidth="59.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;" text="Role :" />
+                <ComboBox fx:id="roleComboBox" prefHeight="37.0" prefWidth="346.0" promptText="Select your role" style="-fx-background-radius: 10; -fx-font-size: 14px;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Admin" />
+                            <String fx:value="Receptionist" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+
+            <Button onAction="#handleSignUp" prefHeight="44.0" prefWidth="230.0" style="-fx-background-color: rgba(26, 26, 26, 0.8); -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold; -fx-background-radius: 60; -fx-padding: 10; -fx-border-color: #FF007F; -fx-border-radius: 60; -fx-border-width: 2;" text="Sign Up">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <InnerShadow>
+                        <color>
+                            <Color opacity="0.03999999910593033" />
+                        </color>
+                    </InnerShadow>
+                </effect>
+            </Button>
+        </VBox>
+
+        <Label layoutX="986.0" layoutY="632.0" prefHeight="38.0" prefWidth="264.0" style="-fx-font-size: 20px; -fx-text-fill: #FFFFFF;" text="Already have an account?" textAlignment="CENTER" wrapText="true" />
+        <Button layoutX="1003.0" layoutY="670.0" onAction="#navigateToLogin" prefHeight="44.0" prefWidth="230.0" style="-fx-background-color: #FF007F; -fx-background-radius: 60; -fx-padding: 5 15; -fx-font-size: 22px; -fx-font-weight: bold;" text="Login" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </AnchorPane>
+</AnchorPane>
