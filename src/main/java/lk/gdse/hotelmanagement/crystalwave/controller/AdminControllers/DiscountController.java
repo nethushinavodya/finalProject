@@ -9,9 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddRoomDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.DiscountDTO;
-import lk.gdse.hotelmanagement.crystalwave.dto.tm.AddRoomTM;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.DiscountTM;
-import lk.gdse.hotelmanagement.crystalwave.model.AddRoomModel;
 import lk.gdse.hotelmanagement.crystalwave.model.DiscountModel;
 
 import java.sql.SQLException;

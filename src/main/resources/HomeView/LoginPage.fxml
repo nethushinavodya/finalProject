@@ -40,7 +40,7 @@
             <Label alignment="TOP_CENTER" prefHeight="99.0" prefWidth="458.0" style="-fx-font-size: 34px; -fx-font-weight: bold; -fx-text-fill: #FF007F;" text="Login" wrapText="true" />
 
             <Label prefHeight="27.0" prefWidth="419.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;" text="Email :" />
-            <TextField fx:id="emailField" onMousePressed="#handleEmailField" promptText="Email" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <TextField fx:id="emailField" onKeyReleased="#emailOnKeyRelease" onMousePressed="#handleEmailField" promptText="Email" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
 
             <Label prefHeight="23.0" prefWidth="419.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;" text="Password :" />
             <PasswordField fx:id="passwordField" onMousePressed="#handlePasswordField" promptText="Password" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />

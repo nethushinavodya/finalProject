@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.control.TextField;
@@ -66,7 +67,16 @@ public class LoginController {
             }
         }
     }
-
+    public boolean isValid(){
+        if(
+                emailField.getText().matches("^[\\w!#$%&'*+/=?{|}~^-]+(?:\\.[\\w!#$%&'*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")&&
+                passwordField.getText() != null
+        ){
+            return true;
+        }else {
+            return false;
+        }
+    }
     private boolean validateUserCredentials(String email, String password) {
         try {
             userModel = Database.getUserByEmailAndRole(email);
@@ -178,5 +188,13 @@ public class LoginController {
         passwordField.setBorder(null);
         errorMsg.setText(" ");
         passwordField.clear();
+    }
+
+    public void emailOnKeyRelease(KeyEvent keyEvent) {
+        if(emailField.getText().matches("^[\\w!#$%&'*+/=?{|}~^-]+(?:\\.[\\w!#$%&'*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
+            emailField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else{
+            emailField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
     }
 }

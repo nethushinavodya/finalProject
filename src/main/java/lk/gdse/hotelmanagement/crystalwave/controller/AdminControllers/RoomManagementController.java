@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -93,17 +94,21 @@ public class RoomManagementController {
         double price = Double.parseDouble(addRoomTypeRateField.getText());
         String roomNumber = addRoomNumberField.getText();
         String description = addRoomTypeDescField.getText();
+        if (isValid()){
+            RoomTypeDTO roomTypeDTO = new RoomTypeDTO(roomNumber,roomType,description,price);
+            boolean isSave = RoomTypeManagementModel.save(roomTypeDTO);
 
-        RoomTypeDTO roomTypeDTO = new RoomTypeDTO(roomNumber,roomType,description,price);
-        boolean isSave = RoomTypeManagementModel.save(roomTypeDTO);
-
-        if (isSave) {
-            new Alert(Alert.AlertType.INFORMATION, "Room added successfully").show();
-            setAll();
-            clear();
+            if (isSave) {
+                new Alert(Alert.AlertType.INFORMATION, "Room added successfully").show();
+                setAll();
+                clear();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Room not added successfully").show();
+            }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Room not added successfully").show();
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
+
     }
 
     public void roomTable(MouseEvent mouseEvent) {
@@ -150,5 +155,46 @@ public class RoomManagementController {
         addRoomTypeDescField.clear();
         addRoomTypeRateField.clear();
         removeRoomNumberField.clear();
+    }
+
+    public void roomTypeOnKeyRelease(KeyEvent keyEvent) {
+        if (addRoomTypeField.getText().matches(" \"^[A-z|\\\\\\\\s]{4,}$")){
+            addRoomTypeField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else{
+            addRoomTypeField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+
+    public void DescriptionOnKeyRelease(KeyEvent keyEvent) {
+        if (addRoomTypeDescField.getText().matches(" \"^[A-z|\\\\\\\\s]{4,}$")){
+            addRoomTypeDescField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px; ");
+        }else {
+            addRoomTypeDescField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+
+    public void priceOnKeyRelease(KeyEvent keyEvent) {
+        if(addRoomTypeRateField.getText().matches("\\d{4}")){
+            addRoomTypeRateField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            addRoomTypeRateField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+
+    public void removeOnKeyRelease(KeyEvent keyEvent) {
+        if (removeRoomNumberField.getText().matches("\\d{1}")){
+            removeRoomNumberField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            removeRoomNumberField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+    public boolean isValid() {
+        if(addRoomTypeField.getText().matches(" \"^[A-z|\\\\\\\\s]{4,}$")&&
+                addRoomTypeDescField.getText().matches("\"^[A-z|\\\\\\\\s]{4,}$")&&
+                addRoomTypeRateField.getText().matches("\"^[0-9]{4}")){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

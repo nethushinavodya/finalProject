@@ -14,17 +14,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="checkInContent" prefHeight="868.0" prefWidth="1324.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers.CheckInController">
+<AnchorPane fx:id="checkInContent" prefHeight="868.0" prefWidth="1137.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers.CheckInController">
     <!-- Header -->
-    <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1324.0" style="-fx-background-color: #2A2E37;">
+    <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1140.0" style="-fx-background-color: #2A2E37;">
         <Label alignment="CENTER" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Check In" />
     </VBox>
 
     <!-- Form Sections -->
-    <HBox layoutX="20.0" layoutY="116.0" prefHeight="345.0" prefWidth="1149.0" spacing="20.0">
+    <HBox layoutX="20.0" layoutY="116.0" prefHeight="345.0" prefWidth="1073.0" spacing="20.0">
 
         <!-- Personal Data Section -->
-        <AnchorPane prefHeight="381.0" prefWidth="393.0" style="-fx-border-color: #2A2E37; -fx-border-width: 1; -fx-background-color: #F3F3F3;">
+        <AnchorPane prefHeight="345.0" prefWidth="328.0" style="-fx-border-color: #2A2E37; -fx-border-width: 1; -fx-background-color: #F3F3F3;">
             <Label layoutX="10.0" layoutY="10.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Guest Information" />
          <Label layoutX="24.0" layoutY="60.0" prefHeight="20.0" prefWidth="78.0" text="Guest Id :" />
 
@@ -40,11 +40,11 @@
             <Label layoutX="22.0" layoutY="258.0" prefHeight="16.0" prefWidth="68.0" text="Address:" />
             <TextField fx:id="addressField" layoutX="100.0" layoutY="254.0" prefWidth="180.0" />
          <ComboBox fx:id="guestIdCmb" layoutX="100.0" layoutY="58.0" onAction="#guestCmb" prefHeight="24.0" prefWidth="180.0" />
-         <Button layoutX="210.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleNewGuest" prefHeight="24.0" prefWidth="140.0" text="Add New Guest" />
+         <Button layoutX="140.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleNewGuest" prefHeight="24.0" prefWidth="140.0" text="Add New Guest" />
         </AnchorPane>
 
            <!-- Payment Section -->
-        <AnchorPane prefHeight="369.0" prefWidth="392.0" style="-fx-border-color: #2A2E37; -fx-border-width: 1; -fx-background-color: #F3F3F3;">
+        <AnchorPane prefHeight="345.0" prefWidth="357.0" style="-fx-border-color: #2A2E37; -fx-border-width: 1; -fx-background-color: #F3F3F3;">
             <Label layoutX="10.0" layoutY="10.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Payment" />
 
                <!-- Payment Amount -->
@@ -83,7 +83,7 @@
         </AnchorPane>
 
         <!-- Room Data Section -->
-        <AnchorPane prefHeight="345.0" prefWidth="327.0" style="-fx-border-color: #2A2E37; -fx-border-width: 1; -fx-background-color: #F3F3F3;">
+        <AnchorPane prefHeight="345.0" prefWidth="348.0" style="-fx-border-color: #2A2E37; -fx-border-width: 1; -fx-background-color: #F3F3F3;">
             <Label layoutX="18.0" layoutY="14.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Room Data" />
 
             <Label layoutX="24.0" layoutY="118.0" text="Room Type Id:" />
@@ -117,15 +117,15 @@
 
     <!-- Control Buttons -->
     <HBox alignment="CENTER" layoutX="20.0" layoutY="500.0" spacing="20.0" />
-    <Button layoutX="809.0" layoutY="485.0" onAction="#handleCancel" prefHeight="30.0" prefWidth="127.0" style="-fx-font-size: 16px; -fx-background-color: #d3d3d3;" text="Cancel">
+    <Button layoutX="775.0" layoutY="485.0" onAction="#handleCancel" prefHeight="30.0" prefWidth="127.0" style="-fx-font-size: 16px; -fx-background-color: #d3d3d3;" text="Cancel">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-    <Button layoutX="1057.0" layoutY="485.0" onAction="#handleAddToCart" prefHeight="30.0" prefWidth="146.0" style="-fx-font-size: 16px; -fx-background-color: #2A2E37; -fx-text-fill: white;" text="Add To Cart">
+    <Button layoutX="924.0" layoutY="485.0" onAction="#handleAddToCart" prefHeight="30.0" prefWidth="146.0" style="-fx-font-size: 16px; -fx-background-color: #2A2E37; -fx-text-fill: white;" text="Add To Cart">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <TableView fx:id="tableView" layoutX="35.0" layoutY="537.0" onMouseClicked="#tableView" prefHeight="259.0" prefWidth="1168.0">
+   <TableView fx:id="tableView" layoutX="35.0" layoutY="537.0" onMouseClicked="#tableView" prefHeight="259.0" prefWidth="740.0">
      <columns>
        <TableColumn fx:id="roomid" prefWidth="75.0" text="roomid" />
        <TableColumn fx:id="gid" prefWidth="75.0" text="gid" />
@@ -137,7 +137,7 @@
      </columns> 
    </TableView>
    <TextField fx:id="totalPrice" layoutX="163.0" layoutY="815.0" prefHeight="30.0" prefWidth="289.0" />
-   <Button fx:id="reservebtn" layoutX="1029.0" layoutY="815.0" onAction="#handleReserve" prefHeight="30.0" prefWidth="174.0" style="-fx-font-size: 16px; -fx-background-color: #2A2E37; -fx-text-fill: white;" text="Reserve">
+   <Button fx:id="reservebtn" layoutX="910.0" layoutY="766.0" onAction="#handleReserve" prefHeight="30.0" prefWidth="174.0" style="-fx-font-size: 16px; -fx-background-color: #2A2E37; -fx-text-fill: white;" text="Reserve">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>

@@ -22,10 +22,11 @@ public class AppInitializer extends Application {
 
 
         /*Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ReceptionistDashboard.fxml"));
-        */Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ServiceReservation.fxml"));
+        */
 
-      /*  Parent load = FXMLLoader.load(getClass().getResource("/HomeView/LoginPage.fxml"));
+        /*Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ServiceReservation.fxml"));
 */
+        Parent load = FXMLLoader.load(getClass().getResource("/HomeView/LoginPage.fxml"));
         Scene scene = new Scene(load);
         stage.setTitle("CrystalWave Hotel Login");
         stage.setScene(scene);
