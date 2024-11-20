@@ -1,12 +1,11 @@
 package lk.gdse.hotelmanagement.crystalwave.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 
 public class UserDTO {
     private String firstName;

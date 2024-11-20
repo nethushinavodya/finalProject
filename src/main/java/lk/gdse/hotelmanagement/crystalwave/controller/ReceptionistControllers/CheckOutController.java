@@ -58,7 +58,7 @@ public class CheckOutController {
     }
 
     @FXML
-    void handleGenerateBill(ActionEvent event) throws JRException {
+    void handleGenerateBill(ActionEvent event) throws JRException, SQLException {
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/nethushi.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
         Map<String, Object> parameters = new HashMap<>();

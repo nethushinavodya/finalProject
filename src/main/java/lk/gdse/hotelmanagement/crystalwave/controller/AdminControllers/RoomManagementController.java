@@ -45,6 +45,27 @@ public class RoomManagementController {
     private void initialize() throws SQLException {
         setCellvalue();
         setAll();
+        getCurrentrTId();
+    }
+    private void getCurrentrTId() {
+        try {
+            String currentrTypeId = RoomTypeManagementModel.getCurrentTypeId();
+
+            String nextrTypeId = generateNextRTypeId(currentrTypeId);
+            addRoomNumberField.setText(nextrTypeId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextRTypeId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("T");
+            int idNum = Integer.parseInt(split[1]);
+            return "T" + ++idNum;
+        }
+        return "T1";
     }
 
     private void setCellvalue() {
@@ -103,6 +124,7 @@ public class RoomManagementController {
             if (isSave) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Room added successfully").show();
                 setAll();
+                getCurrentrTId();
                 clear();
             }else {
                 new Alert(Alert.AlertType.ERROR, "Room not added successfully").show();

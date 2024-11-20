@@ -17,6 +17,4 @@ module lk.gdse.hotelmanagement.crystalwave {
     opens lk.gdse.hotelmanagement.crystalwave.controller.AdminControllers to javafx.fxml;
     exports lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers;
     opens lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers to javafx.fxml;
-    exports lk.gdse.hotelmanagement.crystalwave.Database;
-    opens lk.gdse.hotelmanagement.crystalwave.Database to javafx.fxml;
 }

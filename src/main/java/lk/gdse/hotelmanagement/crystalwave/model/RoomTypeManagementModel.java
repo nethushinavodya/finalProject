@@ -68,6 +68,19 @@ public class RoomTypeManagementModel {
         return preparedStatement.executeUpdate() > 0;
     }
 
+    public static String getCurrentTypeId() throws SQLException {
+        String sql = "SELECT CONCAT('T', MAX(CAST(SUBSTRING(RoomType_Id, 2) AS UNSIGNED))) AS max_p_id FROM Room_Type";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String pid = resultSet.getString(1);
+            return pid;
+        }
+        return null;
+    }
+
     /*
         public List<RoomDTO> getAllRooms() {
             List<RoomDTO> rooms = new ArrayList<>();

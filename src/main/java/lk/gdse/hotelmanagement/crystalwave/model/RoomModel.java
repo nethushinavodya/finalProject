@@ -18,18 +18,7 @@ public class RoomModel {
             return statement.executeUpdate() > 0; // Returns true if update was successful
         }
     }
-    public static boolean updateRoomStatus(String roomId, RoomStatus status) throws SQLException {
-        String query = "UPDATE Rooms SET status = ? WHERE roomNumber = ?";
 
-        try (Connection connection = DBConnection.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setString(1, status.name().toLowerCase());
-            statement.setString(2, roomId);
-
-            return statement.executeUpdate() > 0;
-        }
-    }
     public static boolean isRoomAvailable(String roomId) throws SQLException {
         String query = "SELECT status FROM Rooms WHERE roomNumber = ?";
 

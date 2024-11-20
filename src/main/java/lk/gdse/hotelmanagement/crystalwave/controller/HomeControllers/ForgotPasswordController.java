@@ -18,9 +18,12 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.paint.Color;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import lk.gdse.hotelmanagement.crystalwave.dto.UserDTO;
 import lk.gdse.hotelmanagement.crystalwave.model.UserModel;
 import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.sql.SQLException;
 
 public class  ForgotPasswordController {
 
@@ -29,8 +32,8 @@ public class  ForgotPasswordController {
     @FXML private Label emailError;
 
     @FXML
-    private void handleResetPassword() {
-        String email = emailField.getText().trim();
+    private void handleResetPassword() throws SQLException {
+       String email = emailField.getText().trim();
         String newPassword = newPasswordField.getText().trim();
 
         if (email.isEmpty() || newPassword.isEmpty()) {
@@ -43,7 +46,7 @@ public class  ForgotPasswordController {
             return;
         }
 
-        UserModel userModel = findUserByEmail(email);
+        UserDTO userModel = findUserByEmail(email);
         if (userModel == null) {
             emailField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
             emailError.setText("Entered email is invalid.");
@@ -61,12 +64,12 @@ public class  ForgotPasswordController {
         }
     }
 
-    private UserModel findUserByEmail(String email) {
-        return DBConnection.getInstance().getUserByEmail(email);
+    private UserDTO findUserByEmail(String email) throws SQLException {
+        return UserModel.getUserByEmail(email);
     }
 
-    private boolean updatePassword(UserModel userModel, String newPassword) {
-        return DBConnection.getInstance().updateUserPassword(userModel, newPassword);
+    private boolean updatePassword(UserDTO userModel, String newPassword) throws SQLException {
+        return UserModel.updateUserPassword(userModel, newPassword);
     }
 
     private void showAlert(AlertType type, String title, String message) {

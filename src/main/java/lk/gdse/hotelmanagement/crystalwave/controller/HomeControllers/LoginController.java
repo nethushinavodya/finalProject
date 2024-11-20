@@ -16,7 +16,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.BorderWidths;
-import lk.gdse.hotelmanagement.crystalwave.Database.Database;
+import lk.gdse.hotelmanagement.crystalwave.dto.UserDTO;
 import lk.gdse.hotelmanagement.crystalwave.model.UserModel;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -25,7 +25,7 @@ import java.sql.SQLException;
 public class LoginController {
 
     @FXML private Label errorMsg;
-    UserModel userModel;
+    UserDTO userDTO;
 
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -52,17 +52,17 @@ public class LoginController {
 
         if (validateUserCredentials(email, password)) {
             errorMsg.setText("");
-            if (userModel.getRole().equals("Admin")) {
+            if (userDTO.getRole().equals("Admin")) {
                 navigateToAdminDashboard();
             } else {
                 navigateToReceptionistDashboard();
             }
         } else {
             errorMsg.setText("Incorrect email or password.");
-            if (userModel == null || !BCrypt.checkpw(password, userModel.getPassword())) {
+            if (userDTO == null || !BCrypt.checkpw(password, userDTO.getPassword())) {
                 passwordField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
             }
-            if (userModel == null || !userModel.getEmail().equals(email)) {
+            if (userDTO == null || !userDTO.getEmail().equals(email)) {
                 emailField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
             }
         }
@@ -79,8 +79,8 @@ public class LoginController {
     }
     private boolean validateUserCredentials(String email, String password) {
         try {
-            userModel = Database.getUserByEmailAndRole(email);
-            if (userModel != null && BCrypt.checkpw(password, userModel.getPassword())) {
+            userDTO = UserModel.getUserByEmailAndRole(email);
+            if (userDTO != null && BCrypt.checkpw(password, userDTO.getPassword())) {
                 return true;
             } else {
                 return false;

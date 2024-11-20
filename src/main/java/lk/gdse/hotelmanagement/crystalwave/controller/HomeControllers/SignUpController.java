@@ -12,8 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import lk.gdse.hotelmanagement.crystalwave.dto.UserDTO;
 import lk.gdse.hotelmanagement.crystalwave.model.UserModel;
-import lk.gdse.hotelmanagement.crystalwave.Database.Database;
 import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -54,7 +54,7 @@ public class SignUpController {
         }
 
         try {
-            if (Database.getUserByEmailAndRole(email) != null) {
+            if (UserModel.getUserByEmailAndRole(email) != null) {
                 showAlert(AlertType.WARNING, "Email Exists", "This email is already registered.");
                 return;
             }
@@ -65,10 +65,10 @@ public class SignUpController {
         }
 
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-        UserModel userModel = new UserModel(firstName, lastName, phoneNumber, address, email, hashedPassword, role);
+        UserDTO userModel = new UserDTO(firstName, lastName, phoneNumber, address, email, hashedPassword, role);
 
         try {
-            if (Database.saveUser(userModel)) {
+            if (UserModel.saveUser(userModel)) {
                 showAlert(AlertType.INFORMATION, "Sign Up Successful", "You have successfully signed up!");
                 navigateToLogin();
             } else {

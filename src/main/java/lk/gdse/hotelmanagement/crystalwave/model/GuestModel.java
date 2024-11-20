@@ -10,7 +10,16 @@ import java.time.LocalDate;
 
 public class GuestModel {
 
-    private static DBConnection dbConnection = DBConnection.getInstance();
+    private static DBConnection dbConnection;
+
+    static {
+        try {
+            dbConnection = DBConnection.getInstance();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static boolean saveGuest(GuestDTO guest) throws SQLException {
         String query = "INSERT INTO Guests (name, phone, email, address, city, identityNo, days, amount, paymentStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
