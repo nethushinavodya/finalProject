@@ -15,14 +15,11 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-/*
 
-        Parent load = FXMLLoader.load(getClass().getResource("/AdminView/InventoryManagement.fxml"));
+       /* Parent load = FXMLLoader.load(getClass().getResource("/AdminView/InventoryManagement.fxml"));
 */
 
-
-        Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/CheckOutPage.fxml"));
-
+        Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ReceptionistDashboard.fxml"));
         /*Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ServiceReservation.fxml"));
 */  /*      Parent load = FXMLLoader.load(getClass().getResource("/HomeView/LoginPage.fxml"));
   */      Scene scene = new Scene(load);

@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="868.0" prefWidth="1120.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers.CheckInDetailController">
     <!-- Topic Label -->
     <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1139.0" style="-fx-background-color: #1a1a1a;">
-        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Guest Information">
+        <Label alignment="CENTER" style="-fx-text-fill: #FF007F; -fx-font-size: 24px; -fx-font-weight: bold;" text="Check In Details">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>

@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.gdse.hotelmanagement.crystalwave.dto.*;
@@ -65,6 +67,12 @@ public class CheckInController {
         setAll();
         setRoomIdCmb();
         setdisIdCmb();
+        nameField.setDisable(true);
+        phoneField.setDisable(true);
+        emailField.setDisable(true);
+        addressField.setDisable(true);
+        conditionField.setDisable(true);
+        roomType.setDisable(true);
     }
 
     private void setdisIdCmb() throws SQLException {
@@ -146,6 +154,8 @@ public class CheckInController {
         roomCapacityComboBox.setValue(null);
         checkOutDatePicker.setValue(null);
         checkInDatePicker.setValue(null);
+        disIdCmb.setValue(null);
+        conditionField.clear();
 
     }
     public void handleCancel(ActionEvent actionEvent) {
@@ -160,43 +170,44 @@ public class CheckInController {
         String checkOutDate = checkOutDatePicker.getValue().toString();
         String roomPrice = paymentAmountField.getText();
 
+        if (isValid()) {
+            if (disIdCmb.getValue() != null) {
+                System.out.println(disIdCmb.getValue());
+                disId = disIdCmb.getValue();
+                int discout = DiscountModel.search(Integer.parseInt(disIdCmb.getValue()));
+                System.out.println("DIS  " + discout);
+                int price = Integer.parseInt(roomPrice);
+                System.out.println("PRICE" + price);
+                int v = price * discout / 100;
+                System.out.println("PRICE" + v);
+                int newprice = price - v;
+                System.out.println("NEWPRICE" + newprice);
 
-        if (disIdCmb.getValue() != null) {
-            System.out.println(disIdCmb.getValue());
-            disId = disIdCmb.getValue();
-            int discout = DiscountModel.search(Integer.parseInt(disIdCmb.getValue()));
-            System.out.println("DIS  "+discout);
-            int price = Integer.parseInt(roomPrice);
-            System.out.println("PRICE"+price);
-            int v = price * discout/100;
-            System.out.println("PRICE"+v);
-            int newprice = price - v;
-            System.out.println("NEWPRICE"+newprice);
-
-            roomPrice= String.valueOf(newprice);
-            System.out.println("NEWPRICE"+roomPrice);
-        }
-
-        for(AddToCartTM cartTM : cartTMS) {
-            if (cartTM.getRoomId().equals(roomId)) {
-                new Alert(Alert.AlertType.INFORMATION, "Room already exists").show();
-                return;
+                roomPrice = String.valueOf(newprice);
+                System.out.println("NEWPRICE" + roomPrice);
             }
-        }
 
-        Button btn = new Button("Remove");
+            for (AddToCartTM cartTM : cartTMS) {
+                if (cartTM.getRoomId().equals(roomId)) {
+                    new Alert(Alert.AlertType.INFORMATION, "Room already exists").show();
+                    return;
+                }
+            }
 
-        AddToCartTM addToCartTM = new AddToCartTM(roomId,guestId,noOfGuests,checkInDate,checkOutDate,roomPrice,btn);
+            Button btn = new Button("Remove");
 
-        btn.setOnAction(event -> {
+            AddToCartTM addToCartTM = new AddToCartTM(roomId, guestId, noOfGuests, checkInDate, checkOutDate, roomPrice, btn);
 
-            cartTMS.remove(addToCartTM);
+            btn.setOnAction(event -> {
 
-            tableView.refresh();
-        });
+                cartTMS.remove(addToCartTM);
+
+                tableView.refresh();
+            });
             cartTMS.add(addToCartTM);
-
-            
+        }else {
+            new Alert(Alert.AlertType.INFORMATION, "Input Valid Data").show();
+        }
     }
 
     public void guestCmb(ActionEvent actionEvent) throws SQLException {
@@ -321,5 +332,29 @@ public class CheckInController {
         int discount = Integer.parseInt(discountId);
         int disCon = DiscountModel.search(discount);
         conditionField.setText(disCon+"%");
+    }
+
+    public void amountOnKeyRelease(KeyEvent keyEvent) {
+        if (paymentAmountField.getText().matches("\\d{4,}")){
+            paymentAmountField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else{
+            paymentAmountField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void guestNoOnKeyRelease(KeyEvent keyEvent) {
+        if(noOfGuest.getText().matches("\\d{1,}")){
+            noOfGuest.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            noOfGuest.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+    public boolean isValid() {
+        if(paymentAmountField.getText().matches("\\d{4,}")&&
+                noOfGuest.getText().matches("\\d{1,}")){
+            return true;
+        }else {
+            return false;
+        }
     }
 }
