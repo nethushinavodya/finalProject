@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.gdse.hotelmanagement.crystalwave.dto.EmployeeDTO;
@@ -81,17 +82,25 @@ public class EmployeeManagementController {
         String employeeRole = roleField.getText();
         String contactFieldText =contactField.getText();
 
-        EmployeeDTO employeeDTO = new EmployeeDTO(eId, employeeName, employeeRole, contactFieldText);
-        boolean isUpdate = EmployeeManagementModel.update(employeeDTO);
+        if(isValid()) {
+            try {
+                EmployeeDTO employeeDTO = new EmployeeDTO(eId, employeeName, employeeRole, contactFieldText);
+                boolean isUpdate = EmployeeManagementModel.update(employeeDTO);
 
-        if (isUpdate) {
-            new Alert(Alert.AlertType.INFORMATION, "Employee updated successfully").show();
-            setAll();
-            clear();
-        }else{
-            new Alert(Alert.AlertType.ERROR, "Employee not updated successfully").show();
+                if (isUpdate) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee updated successfully").show();
+                    setAll();
+                    clear();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Employee not updated successfully").show();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
     }
 
 
@@ -114,18 +123,21 @@ public class EmployeeManagementController {
         String employeeRole = roleField.getText();
         String contactFieldText =contactField.getText();
 
-        EmployeeDTO employeeDTO = new EmployeeDTO(eId, employeeName, employeeRole, contactFieldText);
-        boolean isSAved = EmployeeManagementModel.save(employeeDTO);
+        if (isValid()) {
+            EmployeeDTO employeeDTO = new EmployeeDTO(eId, employeeName, employeeRole, contactFieldText);
+            boolean isSAved = EmployeeManagementModel.save(employeeDTO);
 
-        if (isSAved) {
-            new Alert(Alert.AlertType.INFORMATION, "Employee added successfully").show();
-            setAll();
-            clear();
+            if (isSAved) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Employee added successfully").show();
+                setAll();
+                clear();
 
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Employee not added successfully").show();
+            }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Employee not added successfully").show();
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
     }
 
     public void contactOnAction(ActionEvent actionEvent) throws SQLException {
@@ -165,5 +177,40 @@ public class EmployeeManagementController {
         nameField.clear();
         roleField.clear();
         contactField.clear();
+    }
+
+    public void eNameOnKeyRelease(KeyEvent keyEvent) {
+        if(nameField.getText().matches("[a-zA-Z ]+")){
+            nameField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            nameField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void roleOnKeyRelease(KeyEvent keyEvent) {
+        if(roleField.getText().matches("[a-zA-Z ]+")){
+            roleField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else{
+            roleField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void contactOnKeyRelease(KeyEvent keyEvent) {
+        if(contactField.getText().matches("\\d{10}")){
+            contactField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else{
+            contactField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+    public boolean isValid(){
+        if(nameField.getText().matches("[a-zA-Z ]+")&&
+            roleField.getText().matches("[a-zA-Z ]+")&&
+                contactField.getText().matches("\\d{10}$")
+
+        ){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

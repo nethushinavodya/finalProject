@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddItemDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddRoomDTO;
@@ -123,18 +124,22 @@ public class AddRoomController {
     void handleDelete(ActionEvent event) throws SQLException {
         String roomId = addRoomId.getText();
 
-        try {
-            boolean isDelete = AddRoomModel.delete(Integer.parseInt(roomId));
-            if (isDelete) {
-                new Alert(Alert.AlertType.INFORMATION, "Employee deleted successfully").show();
-                setAll();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Employee not deleted successfully").show();
+        if (isValid()) {
+            try {
+                boolean isDelete = AddRoomModel.delete(Integer.parseInt(roomId));
+                if (isDelete) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted successfully").show();
+                    setAll();
+                    clear();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Employee not deleted successfully").show();
+                }
+            } catch (NumberFormatException e) {
+                new Alert(Alert.AlertType.ERROR, "Invalid room number").show();
             }
-        }catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Invalid room number").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
     }
 
     @FXML
@@ -144,20 +149,24 @@ public class AddRoomController {
         String roomStatus = roomStCmb.getValue();
         String roomTypeId = addRoomType.getValue();
 
-        try {
-            AddRoomDTO addRoomDTO = new AddRoomDTO(roomId,roomNumber,roomStatus,roomTypeId);
-            boolean isSave = AddRoomModel.save(addRoomDTO);
+        if(isValid()) {
+            try {
+                AddRoomDTO addRoomDTO = new AddRoomDTO(roomId, roomNumber, roomStatus, roomTypeId);
+                boolean isSave = AddRoomModel.save(addRoomDTO);
 
-            if (isSave) {
-                new Alert(Alert.AlertType.INFORMATION, "Room added successfully").show();
-                setAll();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Room added successfully").show();
+                if (isSave) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Room added successfully").show();
+                    setAll();
+                    clear();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Room not added successfully").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
             }
-        }catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
 
     }
 
@@ -168,18 +177,23 @@ public class AddRoomController {
         String roomStatus = roomStCmb.getValue();
         String roomTypeId = addRoomType.getValue();
 
-        try {
-            AddRoomDTO addRoomDTO = new AddRoomDTO(roomId,roomNumber,roomStatus,roomTypeId);
-            boolean isUpdate = AddRoomModel.update(addRoomDTO);
+        if(isValid()) {
+            try {
+                AddRoomDTO addRoomDTO = new AddRoomDTO(roomId, roomNumber, roomStatus, roomTypeId);
+                boolean isUpdate = AddRoomModel.update(addRoomDTO);
 
-            if (isUpdate) {
-                new Alert(Alert.AlertType.INFORMATION, "Room added successfully").show();
-                setAll();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Room added successfully").show();
+                if (isUpdate) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Room added successfully").show();
+                    setAll();
+                    clear();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Room not added successfully").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
     }
 
@@ -203,9 +217,34 @@ public class AddRoomController {
         boolean isAdd = AddItemModel.isAdd(addItemDTO);
 
         if (isAdd) {
-            new Alert(Alert.AlertType.INFORMATION, "Added successfully").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "Added successfully").show();
+            clear();
         }else {
             new Alert(Alert.AlertType.ERROR, "Not added successfully").show();
         }
+    }
+
+    public void rNumberOnKeyReleased(KeyEvent keyEvent) {
+        if(addRoomNumber.getText().matches("\\d{2,}")){
+            addRoomNumber.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 2px;");
+        }else {
+            addRoomNumber.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 2px;");
+        }
+    }
+    public boolean isValid(){
+        if (addRoomNumber.getText().matches("\\d{2,}")){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public void clear(){
+        addRoomId.clear();
+        addRoomNumber.clear();
+        addRoomType.setValue(null);
+        roomIdCmb.setValue(null);
+        roomStCmb.setValue(null);
+        inventoryIdCmb.setValue(null);
+
     }
 }

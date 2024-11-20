@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddRoomDTO;
@@ -115,15 +116,15 @@ public class AddServiceController {
     public void handleDelete(ActionEvent actionEvent) throws SQLException {
         String ServiceId = serviceId.getText();
 
-        boolean isDelete = AddServiceModel.delete(ServiceId);
+            boolean isDelete = AddServiceModel.delete(ServiceId);
 
-        if (isDelete) {
-            new Alert(Alert.AlertType.INFORMATION, "Employee deleted successfully").show();
-            setAll();
-            clear();
-        }else {
-            new Alert(Alert.AlertType.ERROR, "Employee not deleted successfully").show();
-        }
+            if (isDelete) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Employee deleted successfully").show();
+                setAll();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Employee not deleted successfully").show();
+            }
     }
 
     public void handleSave(ActionEvent actionEvent) throws SQLException {
@@ -136,30 +137,33 @@ public class AddServiceController {
         Connection connection = DBConnection.getInstance().getConnection();
         connection.setAutoCommit(false);
 
-        try{
-            AddServiceDTO addServiceDTO = new AddServiceDTO(sId,sName,desc,sPrice);
-            boolean isSave = AddServiceModel.save(addServiceDTO);
+        if(isValid()) {
+            try {
+                AddServiceDTO addServiceDTO = new AddServiceDTO(sId, sName, desc, sPrice);
+                boolean isSave = AddServiceModel.save(addServiceDTO);
 
-            if(isSave){
-                AddServiceEmployeeDTO addServiceEmployeeDTO = new AddServiceEmployeeDTO(empId,sId);
-                boolean isSave2 = AddServiceEmployeeModel.save(addServiceEmployeeDTO);
+                if (isSave) {
+                    AddServiceEmployeeDTO addServiceEmployeeDTO = new AddServiceEmployeeDTO(empId, sId);
+                    boolean isSave2 = AddServiceEmployeeModel.save(addServiceEmployeeDTO);
 
-                if(isSave2){
-                    connection.commit();
-                    setAll();
-                    clear();
-                }else {
+                    if (isSave2) {
+                        connection.commit();
+                        setAll();
+                        clear();
+                    } else {
+                        connection.rollback();
+                    }
+                } else {
                     connection.rollback();
                 }
-               }else {
-                connection.rollback();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                connection.setAutoCommit(true);
             }
-        }catch (Exception e){
-        e.printStackTrace();
-        }finally{
-            connection.setAutoCommit(true);
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
     }
 
     public void handleUpdate(ActionEvent actionEvent) throws SQLException {
@@ -169,17 +173,20 @@ public class AddServiceController {
         String sPrice = servicePrice.getText();
         String empId = String.valueOf(Integer.parseInt(empIdCmb.getValue()));
 
-        AddServiceDTO addServiceDTO = new AddServiceDTO(sId,sName,desc,sPrice);
-        boolean isUpdate = AddServiceModel.update(addServiceDTO);
+        if(isValid()) {
+            AddServiceDTO addServiceDTO = new AddServiceDTO(sId, sName, desc, sPrice);
+            boolean isUpdate = AddServiceModel.update(addServiceDTO);
 
-        if(isUpdate){
-            new Alert(Alert.AlertType.INFORMATION, "Service updated successfully").show();
-            setAll();
-            clear();
+            if (isUpdate) {
+                new Alert(Alert.AlertType.INFORMATION, "Service updated successfully").show();
+                setAll();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Service not updated successfully").show();
+            }
         }else {
-            new Alert(Alert.AlertType.INFORMATION, "Service not updated successfully").show();
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
     }
 
     public void tableView(MouseEvent mouseEvent) {
@@ -211,5 +218,40 @@ public class AddServiceController {
         ServiceName.clear();
         serviceDesc.clear();
         servicePrice.clear();
+    }
+
+    public void sNameOnKeyRelease(KeyEvent keyEvent) {
+        if(ServiceName.getText().matches("[a-zA-Z ]+")){
+            ServiceName.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            ServiceName.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void descOnKeyRelease(KeyEvent keyEvent) {
+        if(serviceDesc.getText().matches("[a-zA-Z ]+")){
+            serviceDesc.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            serviceDesc.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void priceOnKeyRelease(KeyEvent keyEvent) {
+        if(servicePrice.getText().matches("\\d{1,}")){
+            servicePrice.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else{
+            servicePrice.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+    public boolean isValid() {
+        if(ServiceName.getText().matches("[a-zA-Z ]+")&&
+
+                    servicePrice.getText().matches("\\d{4,}")
+        ){
+            return true;
+        }else {
+            System.out.println("ffff");
+            return false;
+        }
     }
 }

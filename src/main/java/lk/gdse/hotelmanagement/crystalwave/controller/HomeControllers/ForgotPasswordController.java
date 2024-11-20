@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -21,7 +22,7 @@ import lk.gdse.hotelmanagement.crystalwave.model.UserModel;
 import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
 import org.mindrot.jbcrypt.BCrypt;
 
-public class ForgotPasswordController {
+public class  ForgotPasswordController {
 
     @FXML private TextField emailField;
     @FXML private PasswordField newPasswordField;
@@ -97,5 +98,13 @@ public class ForgotPasswordController {
         emailField.clear();
         emailField.setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         emailError.setText("");
+    }
+
+    public void emailOnKeyRelease(KeyEvent keyEvent) {
+        if(emailField.getText().matches("^[\\w!#$%&'*+/=?{|}~^-]+(?:\\.[\\w!#$%&'*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")){
+            emailField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            emailField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
     }
 }

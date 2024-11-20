@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddGuestDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.AddGuestTM;
@@ -65,14 +66,19 @@ public class AddGuestController {
         String guestAddress = address.getText();
         String guestEmail = email.getText();
 
-        AddGuestDTO addGuestDTO = new AddGuestDTO(id,guestName,guestContactNo,guestAddress,guestEmail);
-        boolean isSave = AddGuestModel.save(addGuestDTO);
+        if (isValid()) {
+            AddGuestDTO addGuestDTO = new AddGuestDTO(id, guestName, guestContactNo, guestAddress, guestEmail);
+            boolean isSave = AddGuestModel.save(addGuestDTO);
 
-        if(isSave){
-            new Alert(Alert.AlertType.INFORMATION, "Guest added successfully").show();
-            setAll();
+            if (isSave) {
+                new Alert(Alert.AlertType.INFORMATION, "Guest added successfully").show();
+                setAll();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Guest not added successfully").show();
+            }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Guest not added successfully").show();
+            new Alert(Alert.AlertType.ERROR, "Inout Valid Data").show();
         }
     }
 
@@ -83,14 +89,19 @@ public class AddGuestController {
         String guestAddress = address.getText();
         String guestEmail = email.getText();
 
-        AddGuestDTO addGuestDTO = new AddGuestDTO(id,guestName,guestContactNo,guestAddress,guestEmail);
-        boolean isUpdate = AddGuestModel.update(addGuestDTO);
+        if (isValid()) {
+            AddGuestDTO addGuestDTO = new AddGuestDTO(id, guestName, guestContactNo, guestAddress, guestEmail);
+            boolean isUpdate = AddGuestModel.update(addGuestDTO);
 
-        if(isUpdate){
-            new Alert(Alert.AlertType.INFORMATION, "Guest updated successfully").show();
-            setAll();
+            if (isUpdate) {
+                new Alert(Alert.AlertType.INFORMATION, "Guest updated successfully").show();
+                setAll();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Guest not updated successfully").show();
+            }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Guest not updated successfully").show();
+            new Alert(Alert.AlertType.ERROR, "Inout Valid Data").show();
         }
     }
 
@@ -101,6 +112,7 @@ public class AddGuestController {
         if(isDelete){
             new Alert(Alert.AlertType.INFORMATION, "Guest deleted successfully").show();
             setAll();
+            clear();
         }else {
             new Alert(Alert.AlertType.ERROR, "Guest not deleted successfully").show();
         }
@@ -114,5 +126,55 @@ public class AddGuestController {
         contactNo.setText(addGuestTM.getGuestPhone());
         address.setText(addGuestTM.getGuestAddress());
         email.setText(addGuestTM.getGuestEmail());
+    }
+
+    public void nameOnKeyRelease(KeyEvent keyEvent) {
+        if (name.getText().matches("[a-zA-Z ]+")) {
+            name.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            name.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void contactOnKeyRelease(KeyEvent keyEvent) {
+        if (contactNo.getText().matches("\\d{10}$")) {
+            contactNo.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            contactNo.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void addressOnKeyRelease(KeyEvent keyEvent) {
+        if (address.getText().matches("^[a-zA-Z0-9\\s,.'#-]{5,100}$")) {
+            address.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else{
+            address.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+
+    public void emailOnKeyRelease(KeyEvent keyEvent) {
+        if (email.getText().matches("^[\\w!#$%&'*+/=?{|}~^-]+(?:\\.[\\w!#$%&'*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
+            email.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }else {
+            email.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px;");
+        }
+    }
+    public boolean isValid() {
+        if (name.getText().matches("[a-zA-Z ]+")&&
+                contactNo.getText().matches("\\d{10}$") &&
+                address.getText().matches("^[a-zA-Z0-9\\s,.'#-]{5,100}$") &&
+                email.getText().matches("^[\\w!#$%&'*+/=?{|}~^-]+(?:\\.[\\w!#$%&'*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
+        ){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public void clear(){
+        name.clear();
+        contactNo.clear();
+        address.clear();
+        email.clear();
+
     }
 }

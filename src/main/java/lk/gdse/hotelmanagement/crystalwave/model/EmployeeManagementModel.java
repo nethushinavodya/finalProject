@@ -27,12 +27,13 @@ public class EmployeeManagementModel {
     }
 
     public static boolean update(EmployeeDTO employeeDTO) throws SQLException {
-        String sql = "Update Employeement set Name = ?, Role = ? where ContactNo = ?";
+        String sql = "Update Employeement set Name = ?, Role = ? , ContactNo = ? where Employeement_Id = ?";
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, employeeDTO.getName());
         preparedStatement.setString(2, employeeDTO.getRole());
         preparedStatement.setString(3, employeeDTO.getContact());
+        preparedStatement.setString(4, employeeDTO.getEmployeeId());
         return preparedStatement.executeUpdate() > 0;
     }
 

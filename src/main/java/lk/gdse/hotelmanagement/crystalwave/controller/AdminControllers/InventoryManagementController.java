@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.InventoryDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.InventoryTm;
@@ -80,24 +81,24 @@ public class InventoryManagementController {
         String itemName = itemNameField.getText();
         int itemQuantity = Integer.parseInt(quantityField.getText());
         double itemPrice = Double.parseDouble(priceField.getText());
+        if (isValid()) {
+            try {
+                InventoryDTO inventoryDTO = new InventoryDTO(itemId, itemName, itemQuantity, itemPrice);
+                boolean isUpdate = InventoryManagementModel.update(inventoryDTO);
 
-        try{
-            InventoryDTO inventoryDTO = new InventoryDTO(itemId,itemName,itemQuantity,itemPrice);
-            boolean isUpdate = InventoryManagementModel.update(inventoryDTO);
-
-            if (isUpdate) {
-                new Alert(Alert.AlertType.INFORMATION, "Item updated successfully").show();
-                setAll();
-                clear();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Item not updated successfully").show();
+                if (isUpdate) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Item updated successfully").show();
+                    setAll();
+                    clear();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Item not updated successfully").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }catch (SQLException e){
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
-
-
     }
 
     public void handleAddItem(ActionEvent actionEvent) throws SQLException {
@@ -106,23 +107,24 @@ public class InventoryManagementController {
         int itemQuantity = Integer.parseInt(quantityField.getText());
         double itemPrice = Double.parseDouble(priceField.getText());
 
+        if (isValid()) {
+            try {
+                InventoryDTO inventoryDTO = new InventoryDTO(itemId, itemName, itemQuantity, itemPrice);
+                boolean isSave = InventoryManagementModel.save(inventoryDTO);
 
-
-        try {
-            InventoryDTO inventoryDTO = new InventoryDTO(itemId,itemName,itemQuantity,itemPrice);
-            boolean isSave = InventoryManagementModel.save(inventoryDTO);
-
-            if (isSave) {
-                new Alert(Alert.AlertType.INFORMATION, "Item added successfully").show();
-                setAll();
-                clear();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Item not added successfully").show();
+                if (isSave) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Item added successfully").show();
+                    setAll();
+                    clear();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Item not added successfully").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
-
 
     }
 
@@ -145,5 +147,39 @@ public class InventoryManagementController {
 
     public void handleClear(ActionEvent actionEvent) {
         clear();
+    }
+
+    public void iNameOnKeyRe(KeyEvent keyEvent) {
+        if (itemNameField.getText().matches("[a-zA-Z ]+")) {
+            itemNameField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px");
+        }else {
+            itemNameField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px");
+        }
+    }
+
+    public void quantityOnKeyRelease(KeyEvent keyEvent) {
+        if(quantityField.getText().matches("\\d{1,}")) {
+            quantityField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px");
+        }else {
+            quantityField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px");
+        }
+    }
+
+    public void priceOnKeyRelease(KeyEvent keyEvent) {
+        if(priceField.getText().matches("\\d{3,}")) {
+            priceField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-height: 5px");
+        }else {
+            priceField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-height: 5px");
+        }
+    }
+    public boolean isValid(){
+        if (itemNameField.getText().matches("[a-zA-Z ]+")&&
+                quantityField.getText().matches("\\d{1,}")&&
+                priceField.getText().matches("\\d{3,}")
+        ) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }

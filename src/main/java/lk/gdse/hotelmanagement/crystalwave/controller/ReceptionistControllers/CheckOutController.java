@@ -8,15 +8,23 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddRoomDTO;
 import lk.gdse.hotelmanagement.crystalwave.model.AddRoomModel;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CheckOutController {
 
     public ComboBox roomIdCmb;
+    public TextField reservation_id;
     @FXML
     private Button checkoutButton;
     @FXML
@@ -50,7 +58,13 @@ public class CheckOutController {
     }
 
     @FXML
-    void handleGenerateBill(ActionEvent event) {
+    void handleGenerateBill(ActionEvent event) throws JRException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/nethushi.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("rid", reservation_id.getText());
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DBConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint, false);
 
     }
 

@@ -32,13 +32,13 @@
 
             <!-- HBox for First Name and Last Name in the same row -->
             <HBox spacing="15">
-                <TextField fx:id="firstNameField" prefHeight="38.0" prefWidth="204.0" promptText="First Name" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
-                <TextField fx:id="lastNameField" prefHeight="38.0" prefWidth="204.0" promptText="Last Name" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+                <TextField fx:id="firstNameField" onKeyReleased="#fNameOnKeyRelease" prefHeight="38.0" prefWidth="204.0" promptText="First Name" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+                <TextField fx:id="lastNameField" onKeyReleased="#lNameOnKeyRelease" prefHeight="38.0" prefWidth="204.0" promptText="Last Name" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
             </HBox>
 
-            <TextField fx:id="phoneNumberField" promptText="Enter your phone number" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
-            <TextField fx:id="addressField" promptText="Enter your address" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
-            <TextField fx:id="emailField" promptText="Enter your email" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <TextField fx:id="phoneNumberField" onKeyReleased="#contactOnKeyRelease" promptText="Enter your phone number" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <TextField fx:id="addressField" onKeyReleased="#addressOnKeyRelease" promptText="Enter your address" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
+            <TextField fx:id="emailField" onKeyReleased="#emailOnKeyRelease" promptText="Enter your email" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
             <HBox layoutX="40.0" layoutY="196.0" spacing="15">
                 <TextField fx:id="passwordField" prefHeight="38.0" prefWidth="204.0" promptText="Enter Password" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />
                 <TextField fx:id="confirmPasswordField" prefHeight="38.0" prefWidth="204.0" promptText="Confirm Password" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-prompt-text-fill: #AAAAAA; -fx-background-radius: 10; -fx-padding: 10;" />

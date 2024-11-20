@@ -78,10 +78,12 @@ public class RoomManagementController {
     public void handleRemoveRoom(ActionEvent actionEvent) throws SQLException {
         String roomNumber = removeRoomNumberField.getText();
 
+
+
         boolean isDeleted = RoomTypeManagementModel.delete(roomNumber);
 
         if (isDeleted) {
-            new Alert(Alert.AlertType.INFORMATION, "Room Deleted").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "Room Deleted").show();
             setAll();
             clear();
         }else {
@@ -99,7 +101,7 @@ public class RoomManagementController {
             boolean isSave = RoomTypeManagementModel.save(roomTypeDTO);
 
             if (isSave) {
-                new Alert(Alert.AlertType.INFORMATION, "Room added successfully").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Room added successfully").show();
                 setAll();
                 clear();
             }else {
@@ -129,7 +131,7 @@ public class RoomManagementController {
         RoomTypeDTO roomTypeDTO = new RoomTypeDTO(roomNumber,roomType,roomTypeDescription,roomTypePrice);
         boolean isUpdate = RoomTypeManagementModel.update(roomTypeDTO);
         if (isUpdate) {
-            new Alert(Alert.AlertType.INFORMATION, "Room updated successfully").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "Room updated successfully").show();
             setAll();
             clear();
         }else {
@@ -158,7 +160,7 @@ public class RoomManagementController {
     }
 
     public void roomTypeOnKeyRelease(KeyEvent keyEvent) {
-        if (addRoomTypeField.getText().matches(" \"^[A-z|\\\\\\\\s]{4,}$")){
+        if (addRoomTypeField.getText().matches("[a-zA-Z ]+")){
             addRoomTypeField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
         }else{
             addRoomTypeField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
@@ -166,7 +168,7 @@ public class RoomManagementController {
     }
 
     public void DescriptionOnKeyRelease(KeyEvent keyEvent) {
-        if (addRoomTypeDescField.getText().matches(" \"^[A-z|\\\\\\\\s]{4,}$")){
+        if (addRoomTypeDescField.getText().matches("[a-zA-Z ]+")){
             addRoomTypeDescField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px; ");
         }else {
             addRoomTypeDescField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
@@ -174,24 +176,26 @@ public class RoomManagementController {
     }
 
     public void priceOnKeyRelease(KeyEvent keyEvent) {
-        if(addRoomTypeRateField.getText().matches("\\d{4}")){
+        if(addRoomTypeRateField.getText().matches("\\d{4,}")){
             addRoomTypeRateField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
         }else {
             addRoomTypeRateField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
         }
     }
 
-    public void removeOnKeyRelease(KeyEvent keyEvent) {
-        if (removeRoomNumberField.getText().matches("\\d{1}")){
+    public boolean removeOnKeyRelease(KeyEvent keyEvent) {
+        if (removeRoomNumberField.getText().matches("\\d{1,}")){
             removeRoomNumberField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+            return true;
         }else {
             removeRoomNumberField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+            return false;
         }
     }
     public boolean isValid() {
-        if(addRoomTypeField.getText().matches(" \"^[A-z|\\\\\\\\s]{4,}$")&&
-                addRoomTypeDescField.getText().matches("\"^[A-z|\\\\\\\\s]{4,}$")&&
-                addRoomTypeRateField.getText().matches("\"^[0-9]{4}")){
+        if(addRoomTypeField.getText().matches("[a-zA-Z ]+")&&
+                addRoomTypeDescField.getText().matches("[a-zA-Z ]+")&&
+                addRoomTypeRateField.getText().matches("\\d{4,}")){
             return true;
         }else{
             return false;

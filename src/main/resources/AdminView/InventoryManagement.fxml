@@ -45,13 +45,13 @@
            <TextField fx:id="itemIdField" layoutX="33.0" layoutY="73.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Item Id" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
       
            <Label layoutX="33.0" layoutY="108.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Item Name :" textFill="#00b7ff" />
-           <TextField fx:id="itemNameField" layoutX="33.0" layoutY="140.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Item Name" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+           <TextField fx:id="itemNameField" layoutX="33.0" layoutY="140.0" onKeyReleased="#iNameOnKeyRe" prefHeight="35.0" prefWidth="954.0" promptText="Enter Item Name" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
       
            <Label layoutX="33.0" layoutY="175.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Quantity :" textFill="#00b7ff" />
-           <TextField fx:id="quantityField" layoutX="33.0" layoutY="207.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Quantity" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+           <TextField fx:id="quantityField" layoutX="33.0" layoutY="207.0" onKeyReleased="#quantityOnKeyRelease" prefHeight="35.0" prefWidth="954.0" promptText="Enter Quantity" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
       
            <Label layoutX="33.0" layoutY="242.0" prefHeight="32.0" prefWidth="116.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Price :" textFill="#00b7ff" />
-           <TextField fx:id="priceField" layoutX="33.0" layoutY="274.0" prefHeight="35.0" prefWidth="954.0" promptText="Enter Price" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
+           <TextField fx:id="priceField" layoutX="33.0" layoutY="274.0" onKeyReleased="#priceOnKeyRelease" prefHeight="35.0" prefWidth="954.0" promptText="Enter Price" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;-fx-background-color: #333333;-fx-text-fill: #ffffff;" />
             <Button layoutX="275.0" layoutY="381.0" onAction="#handleAddItem" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #333333; -fx-background-radius: 20; -fx-border-color: #FF007F; -fx-border-radius: 20; -fx-border-width: 3; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="Add Item">
             <cursor>
                <Cursor fx:constant="HAND" />

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -106,5 +107,45 @@ public class SignUpController {
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
         return email.matches(emailRegex);
+    }
+
+    public void fNameOnKeyRelease(KeyEvent keyEvent) {
+        if(firstNameField.getText().matches("^[A-z|\\\\s]{4,}$")) {
+            firstNameField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            firstNameField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+
+    public void lNameOnKeyRelease(KeyEvent keyEvent) {
+        if(lastNameField.getText().matches("^[A-z|\\\\s]{4,}$")) {
+            lastNameField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            lastNameField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+
+    public void contactOnKeyRelease(KeyEvent keyEvent) {
+       if(phoneNumberField.getText().matches("^\\d{3}[- ]?\\d{3}[- ]?\\d{4}$")){
+           phoneNumberField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+       }else {
+           phoneNumberField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+       }
+    }
+
+    public void addressOnKeyRelease(KeyEvent keyEvent) {
+        if (addressField.getText().matches("^[a-zA-Z0-9\\s,.'#-]{5,100}$")) {
+            addressField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            addressField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
+    }
+
+    public void emailOnKeyRelease(KeyEvent keyEvent) {
+        if (emailField.getText().matches("^[\\w!#$%&'*+/=?{|}~^-]+(?:\\.[\\w!#$%&'*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")){
+            emailField.setStyle("-fx-border-color: green; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }else {
+            emailField.setStyle("-fx-border-color: red; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        }
     }
 }

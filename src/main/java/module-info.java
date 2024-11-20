@@ -5,7 +5,9 @@ module lk.gdse.hotelmanagement.crystalwave {
     requires javafx.base;
     requires java.sql;
     requires jbcrypt;
+    requires spring.security.crypto;
     requires static lombok;
+    requires net.sf.jasperreports.core;
 
     exports lk.gdse.hotelmanagement.crystalwave;
     exports lk.gdse.hotelmanagement.crystalwave.controller.HomeControllers;

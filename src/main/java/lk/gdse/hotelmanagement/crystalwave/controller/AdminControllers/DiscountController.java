@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddRoomDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.DiscountDTO;
@@ -75,14 +76,18 @@ public class DiscountController {
     void handleDelete(ActionEvent event) throws SQLException {
         String id = disId.getText();
 
-        boolean isDeleted = DiscountModel.delete(id);
+        if (isValid()) {
+            boolean isDeleted = DiscountModel.delete(id);
 
-        if (isDeleted) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Discount deleted successfully.").show();
-            setAll();
-            clear();
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Discount deleted successfully.").show();
+                setAll();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Discount not deleted successfully.").show();
+            }
         }else {
-            new Alert(Alert.AlertType.CONFIRMATION, "Discount not deleted successfully.").show();
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
     }
 
@@ -94,15 +99,20 @@ public class DiscountController {
         String start = String.valueOf(startDate.getValue());
         String end = String.valueOf(endDate.getValue());
 
-        DiscountDTO discountDTO = new DiscountDTO(id, type, con, start, end);
-        boolean isSave = DiscountModel.save(discountDTO);
+        if (isValid()) {
 
-        if (isSave) {
-            new Alert(Alert.AlertType.INFORMATION, "Discount saved successfully").show();
-            setAll();
-            clear();
-        }else{
-            new Alert(Alert.AlertType.ERROR, "Discount not saved successfully").show();
+            DiscountDTO discountDTO = new DiscountDTO(id, type, con, start, end);
+            boolean isSave = DiscountModel.save(discountDTO);
+
+            if (isSave) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Discount saved successfully").show();
+                setAll();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Discount not saved successfully").show();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Input Valid Data").show();
         }
     }
 
@@ -123,5 +133,29 @@ public class DiscountController {
         startDate.setValue(null);
         endDate.setValue(null);
 
+    }
+
+    public void discountTypeOnKeyRelseased(KeyEvent keyEvent) {
+        if (disType.getText().matches("[a-zA-Z ]+")){
+            disType.setStyle("-fx-border-color: green; -fx-border-width: 2px;; -fx-border-height: 5px;");
+        }else {
+            disType.setStyle("-fx-border-color: red; -fx-border-width: 2px; ; -fx-border-height: 5px;");
+        }
+    }
+
+    public void ConditionOnKeyRelease(KeyEvent keyEvent) {
+        if (disCon.getText().matches("\\d{1,}")){
+            disCon.setStyle("-fx-border-color: green; -fx-border-width: 2px; ; -fx-border-height: 5px;");
+        }else {
+            disCon.setStyle("-fx-border-color: red; -fx-border-width: 2px; ; -fx-border-height: 5px;");
+        }
+    }
+    public boolean isValid() {
+        if (disType.getText().matches("[a-zA-Z ]+")&&
+                disCon.getText().matches("\\d{1,}")) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
