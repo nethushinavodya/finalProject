@@ -1,7 +1,6 @@
 package lk.gdse.hotelmanagement.crystalwave.model;
 
 import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
-import lk.gdse.hotelmanagement.crystalwave.dto.RoomDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.RoomTypeDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.RoomTypeTm;
 
@@ -79,21 +78,5 @@ public class RoomTypeManagementModel {
             return pid;
         }
         return null;
-    }
-
-    /*
-        public List<RoomDTO> getAllRooms() {
-            List<RoomDTO> rooms = new ArrayList<>();
-            rooms.add(new RoomDTO(101, "Single", 100.00, "Available"));
-            rooms.add(new RoomDTO(102, "Double", 150.00, "Booked"));
-            return rooms;
-        }*/
-    public void bookRoom(RoomDTO room) {
-        room.setRoomStatus("Booked");
-        System.out.println("Room " + room.getRoomNumber() + " booked successfully.");
-    }
-    public void cancelRoom(RoomDTO room) {
-        room.setRoomStatus("Available");
-        System.out.println("Room " + room.getRoomNumber() + " booking canceled.");
     }
 }

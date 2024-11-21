@@ -44,6 +44,29 @@ public class AddServiceController {
         setAll();
         setempIdCmb1();
         setsrviceIdCmb();
+        getCurrentSId();
+        serviceId.setDisable(true);
+    }
+
+    private void getCurrentSId() {
+        try {
+            String currentServiceId = AddServiceModel.getCurrentSId();
+
+            String nextServiceId = generateNextServiceId(currentServiceId);
+            serviceId.setText(nextServiceId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextServiceId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("S");
+            int idNum = Integer.parseInt(split[1]);
+            return "S" + ++idNum;
+        }
+        return "S1";
     }
 
     private void setsrviceIdCmb() {
@@ -214,7 +237,6 @@ public class AddServiceController {
         }
     }
     public void clear(){
-        serviceId.clear();
         ServiceName.clear();
         serviceDesc.clear();
         servicePrice.clear();

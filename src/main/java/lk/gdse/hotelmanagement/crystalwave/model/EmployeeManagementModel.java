@@ -85,15 +85,17 @@ public class EmployeeManagementModel {
         return list;
 
     }
-    public List<EmployeeDTO> getAllEmployees() {
-        List<EmployeeDTO> employees = new ArrayList<>();
-        employees.add(new EmployeeDTO("1", "John Doe", "Manager", "123456789"));
-        employees.add(new EmployeeDTO("2", "Jane Smith", "Receptionist", "987654321"));
 
-        return employees;
-    }
+    public static String getCurrentDiscountId() throws SQLException {
+        String sql = "SELECT CONCAT('E', MAX(CAST(SUBSTRING(Employeement_Id, 2) AS UNSIGNED))) AS max_e_id FROM Employeement";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
 
-    public void addEmployee(EmployeeDTO employee) {
-        System.out.println("Employee " + employee.getName() + " added.");
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String eid = resultSet.getString(1);
+            return eid;
+        }
+        return null;
     }
 }

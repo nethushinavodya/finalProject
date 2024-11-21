@@ -70,15 +70,17 @@ public class InventoryManagementModel {
 
     }
 
+    public static String getCurrentRoomId() throws SQLException {
+        String sql = "SELECT CONCAT('C', MAX(CAST(SUBSTRING(Inventory_Id, 2) AS UNSIGNED))) AS max_i_id FROM Inventory";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
 
-    public List<InventoryDTO> getAllInventoryItems() {
-        List<InventoryDTO> items = new ArrayList<>();
-        items.add(new InventoryDTO(1, "Shampoo", 50, 500.0));
-        items.add(new InventoryDTO(2, "Towels", 30, 250.0));
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String itemid = resultSet.getString(1);
+            return itemid;
+        }
+        return null;
+    }
 
-        return items;
-    }
-    public void addInventoryItem(InventoryDTO item) {
-        System.out.println("Inventory item " + item.getItemName() + " added.");
-    }
 }

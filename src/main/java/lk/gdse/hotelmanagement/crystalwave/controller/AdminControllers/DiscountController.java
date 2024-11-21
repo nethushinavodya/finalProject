@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.AddRoomDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.DiscountDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.DiscountTM;
+import lk.gdse.hotelmanagement.crystalwave.model.AddRoomModel;
 import lk.gdse.hotelmanagement.crystalwave.model.DiscountModel;
 
 import java.sql.SQLException;
@@ -55,7 +56,31 @@ public class DiscountController {
     public void initialize() throws SQLException {
         setCellValue();
         setAll();
+        getCurrentDisID();
+        disId.setDisable(true);
     }
+
+    private void getCurrentDisID() {
+        try {
+            String currentDisId = DiscountModel.getCurrentDiscountId();
+
+            String nextDiscountId = generateNextDiscountId(currentDisId);
+            disId.setText(nextDiscountId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextDiscountId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("D");
+            int idNum = Integer.parseInt(split[1]);
+            return "D" + ++idNum;
+        }
+        return "D1";
+    }
+
 
     private void setCellValue() {
         discountId.setCellValueFactory(new PropertyValueFactory<>("discountId"));
@@ -127,7 +152,6 @@ public class DiscountController {
         endDate.setValue(LocalDate.parse(discountTM.getDiscountEndDate()));
     }
     public void clear(){
-        disId.clear();
         disType.clear();
         disCon.clear();
         startDate.setValue(null);

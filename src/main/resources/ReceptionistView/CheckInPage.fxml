@@ -75,10 +75,10 @@
 
                <!-- Generate Bill Button -->
             <HBox alignment="CENTER" layoutX="20.0" layoutY="250.0" spacing="20.0" />
-         <TextField fx:id="paymentAmountField" layoutX="160.0" layoutY="46.0" onKeyReleased="#amountOnKeyRelease" prefHeight="24.0" prefWidth="180.0" />
+         <TextField fx:id="paymentAmountField" layoutX="160.0" layoutY="46.0" onKeyReleased="#amountOnKeyRelease" prefHeight="24.0" prefWidth="180.0" promptText="Enter the Price" />
          <Label layoutX="20.0" layoutY="250.0" prefHeight="28.0" prefWidth="140.0" text="Discount Id :" />
          <ComboBox fx:id="disIdCmb" layoutX="160.0" layoutY="252.0" onAction="#discountId" prefHeight="20.0" prefWidth="180.0" />
-         <Label layoutX="20.0" layoutY="294.0" prefHeight="28.0" prefWidth="140.0" text="Discount Condition :" />
+         <Label layoutX="20.0" layoutY="294.0" prefHeight="28.0" prefWidth="140.0" text="Discount Amount :" />
          <TextField fx:id="conditionField" layoutX="160.0" layoutY="296.0" prefHeight="24.0" prefWidth="180.0" />
         </AnchorPane>
 
@@ -89,7 +89,7 @@
             <Label layoutX="24.0" layoutY="118.0" text="Room Type Id:" />
             <HBox layoutX="134.0" layoutY="46.0" spacing="10.0" />
 
-            <Label layoutX="21.0" layoutY="163.0" text="Room Capacity:" />
+            <Label layoutX="21.0" layoutY="163.0" text="Room Capacity :" />
             <HBox layoutX="134.0" layoutY="96.0" spacing="10.0" />
 
             <Label layoutX="23.0" layoutY="208.0" text="Check-in Date:" />
@@ -98,20 +98,23 @@
             <Label layoutX="19.0" layoutY="256.0" text="Check-out Date:" />
             <DatePicker fx:id="checkOutDatePicker" layoutX="134.0" layoutY="252.0" prefWidth="160.0" />
 
-            <Label layoutX="20.0" layoutY="301.0" text="Room ID:" />
-         <TextField fx:id="roomType" layoutX="134.0" layoutY="114.0" prefHeight="24.0" prefWidth="160.0" />
-             <ComboBox fx:id="roomCapacityComboBox" layoutX="134.0" layoutY="159.0" prefWidth="160.0">
-                 <items>
-                     <FXCollections fx:factory="observableArrayList">
-                         <String fx:value="Single" />
-                         <String fx:value="Double" />
-                         <String fx:value="Triple" />
-                     </FXCollections>
-                 </items>
-             </ComboBox>
+            <Label layoutX="23.0" layoutY="297.0" prefHeight="24.0" prefWidth="80.0" text="Room Id :" />
+         <TextField fx:id="roomType" layoutX="134.0" layoutY="114.0" prefHeight="24.0" prefWidth="160.0" promptText="Room Type Id" />
          <Label layoutX="24.0" layoutY="68.0" prefHeight="20.0" prefWidth="88.0" text="No Of Guest :" />
-         <TextField fx:id="noOfGuest" layoutX="129.0" layoutY="66.0" onKeyReleased="#guestNoOnKeyRelease" />
+         <TextField fx:id="noOfGuest" layoutX="129.0" layoutY="66.0" onKeyReleased="#guestNoOnKeyRelease" promptText="No of Guests" />
          <ComboBox fx:id="roomIdCmb" layoutX="134.0" layoutY="297.0" onAction="#roomId" prefHeight="24.0" prefWidth="160.0" />
+         <ComboBox fx:id="roomCapacityComboBox" layoutX="135.0" layoutY="161.0" prefHeight="24.0" prefWidth="160.0" >
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Single" />
+                     <String fx:value="Double" />
+                     <String fx:value="Suite" />
+                     <String fx:value="Duluxe" />
+                     <String fx:value="Family" />
+                 </FXCollections>
+             </items>
+         </ComboBox>
+
         </AnchorPane>
     </HBox>
 

@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.gdse.hotelmanagement.crystalwave.dto.EmployeeDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.EmployeeTm;
+import lk.gdse.hotelmanagement.crystalwave.model.DiscountModel;
 import lk.gdse.hotelmanagement.crystalwave.model.EmployeeManagementModel;
 
 import java.io.IOException;
@@ -43,7 +44,32 @@ public class EmployeeManagementController {
     private void initialize() throws SQLException {
         setCellValue();
         setAll();
+        getCurrentEId();
+        eIdtxt.setDisable(true);
     }
+
+    private void getCurrentEId() {
+        try {
+            String currentEId = EmployeeManagementModel.getCurrentDiscountId();
+
+            String nextEmployeeId = generateNextEmployeeId(currentEId);
+            eIdtxt.setText(nextEmployeeId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextEmployeeId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("E");
+            int idNum = Integer.parseInt(split[1]);
+            return "E" + ++idNum;
+        }
+        return "E1";
+    }
+
+
 
     private void setAll() throws SQLException {
         ObservableList<EmployeeTm> employees = FXCollections.observableArrayList();
@@ -173,7 +199,6 @@ public class EmployeeManagementController {
         }
     }
     public void clear(){
-        eIdtxt.clear();
         nameField.clear();
         roleField.clear();
         contactField.clear();

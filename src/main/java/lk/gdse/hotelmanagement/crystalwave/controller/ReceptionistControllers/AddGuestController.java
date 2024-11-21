@@ -15,6 +15,7 @@ import lk.gdse.hotelmanagement.crystalwave.dto.AddGuestDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.AddGuestTM;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.RoomTypeTm;
 import lk.gdse.hotelmanagement.crystalwave.model.AddGuestModel;
+import lk.gdse.hotelmanagement.crystalwave.model.AddRoomModel;
 import lk.gdse.hotelmanagement.crystalwave.model.RoomTypeManagementModel;
 
 import java.sql.SQLException;
@@ -37,6 +38,29 @@ public class AddGuestController {
     private void initialize() throws SQLException {
         setCellvalue();
         setAll();
+        getCurrentGuestId();
+        Id.setDisable(true);
+    }
+
+    private void getCurrentGuestId() {
+        try {
+            String currentGuestId = AddGuestModel.getCurrentGuestId();
+
+            String nextGuestId = generateNextGuestId(currentGuestId);
+            Id.setText(nextGuestId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextGuestId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("G");
+            int idNum = Integer.parseInt(split[1]);
+            return "G" + ++idNum;
+        }
+        return "G1";
     }
 
     private void setCellvalue() {

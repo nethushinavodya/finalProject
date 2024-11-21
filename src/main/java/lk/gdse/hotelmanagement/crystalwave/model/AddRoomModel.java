@@ -95,4 +95,24 @@ public class AddRoomModel {
         return CrudUtil.execute("UPDATE Room SET RoomStatus = 'Available' WHERE Room_Id =? ",roomId);
 
     }
+
+    public static String getCurrentRoomId() throws SQLException {
+        String sql = "SELECT CONCAT('R', MAX(CAST(SUBSTRING(Room_Id, 2) AS UNSIGNED))) AS max_r_id FROM Room";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String rid = resultSet.getString(1);
+            return rid;
+        }
+        return null;
+    }
+
+    public static boolean updateAvailable(String roomId) throws SQLException {
+        return CrudUtil.execute(
+                "UPDATE Room set RoomStatus = 'Occupied' where Room_Id = ?",
+                roomId
+        );
+    }
 }

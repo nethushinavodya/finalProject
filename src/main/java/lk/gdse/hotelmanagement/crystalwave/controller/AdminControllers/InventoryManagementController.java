@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.gdse.hotelmanagement.crystalwave.dto.InventoryDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.InventoryTm;
+import lk.gdse.hotelmanagement.crystalwave.model.AddRoomModel;
 import lk.gdse.hotelmanagement.crystalwave.model.InventoryManagementModel;
 
 import java.sql.SQLException;
@@ -37,7 +38,31 @@ public class InventoryManagementController {
     private void initialize() throws SQLException {
         setCellvalue();
         setAll();
+        getCurrentItemId();
+        itemIdField.setDisable(true);
     }
+
+    private void getCurrentItemId() {
+        try {
+            String currentItemId = InventoryManagementModel.getCurrentRoomId();
+
+            String nextItemId = generateNextInvId(currentItemId);
+            itemIdField.setText(nextItemId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextInvId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("C");
+            int idNum = Integer.parseInt(split[1]);
+            return "C" + ++idNum;
+        }
+        return "C1";
+    }
+
     private void setCellvalue() {
         itemIdColumn.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
@@ -138,7 +163,6 @@ public class InventoryManagementController {
 
     }
     public void clear(){
-        itemIdField.clear();
         itemNameField.clear();
         quantityField.clear();
         priceField.clear();

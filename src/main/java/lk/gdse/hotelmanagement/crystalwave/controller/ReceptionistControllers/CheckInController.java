@@ -269,17 +269,6 @@ public class CheckInController {
             new Alert(Alert.AlertType.ERROR, "Reservation has not been saved successfully").showAndWait();
         }
     }
-
-    /*public void tableView(MouseEvent mouseEvent) {
-        TableView <ReservationTM>tableView = (TableView<ReservationTM>) mouseEvent.getSource();
-        ReservationTM reservationTM = tableView.getSelectionModel().getSelectedItem();
-        guestIdCmb.setValue(reservationTM.getGuestId());
-        roomIdField.setText(reservationTM.getRoomId());
-        checkInDatePicker.setValue(LocalDate.parse(reservationTM.getCheckInDate()));
-        checkOutDatePicker.setValue(LocalDate.parse(reservationTM.getCheckOutDate()));
-        
-
-    }*/
     private void getCurrentid() {
         try {
             String currentId = ReservationModel.getCurrentId();

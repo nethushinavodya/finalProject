@@ -46,7 +46,9 @@ public class RoomManagementController {
         setCellvalue();
         setAll();
         getCurrentrTId();
+        addRoomNumberField.setDisable(true);
     }
+
     private void getCurrentrTId() {
         try {
             String currentrTypeId = RoomTypeManagementModel.getCurrentTypeId();
@@ -92,14 +94,10 @@ public class RoomManagementController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
-
-
     }
 
     public void handleRemoveRoom(ActionEvent actionEvent) throws SQLException {
         String roomNumber = removeRoomNumberField.getText();
-
-
 
         boolean isDeleted = RoomTypeManagementModel.delete(roomNumber);
 
@@ -174,7 +172,6 @@ public class RoomManagementController {
         }
     }
     public void clear(){
-        addRoomNumberField.clear();
         addRoomTypeField.clear();
         addRoomTypeDescField.clear();
         addRoomTypeRateField.clear();

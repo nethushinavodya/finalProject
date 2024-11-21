@@ -21,21 +21,6 @@ public class ReportsController {
 
     }
 
-    @FXML
-    private void generateReport() {
-        showAlert("Report Generated", "The report has been generated successfully.");
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    public void handleGenerateReport(ActionEvent actionEvent) {
-    }
-
     public void handleGenerateEmployeeReport(ActionEvent actionEvent) {
     }
 

@@ -52,6 +52,29 @@ public class AddRoomController {
         roomStCmb.getItems().addAll("Available","Occupied" );
         setRoomIdCmb();
         setInventoryCmb();
+        getCurrentRoomId();
+        addRoomId.setDisable(true);
+    }
+
+    private void getCurrentRoomId() throws SQLException {
+        try {
+            String currentRoomId = AddRoomModel.getCurrentRoomId();
+
+            String nextRoomId = generateNextRoomId(currentRoomId);
+            addRoomId.setText(nextRoomId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextRoomId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("R");
+            int idNum = Integer.parseInt(split[1]);
+            return "R" + ++idNum;
+        }
+        return "R1";
     }
 
     private void setInventoryCmb() {
@@ -239,7 +262,6 @@ public class AddRoomController {
         }
     }
     public void clear(){
-        addRoomId.clear();
         addRoomNumber.clear();
         addRoomType.setValue(null);
         roomIdCmb.setValue(null);

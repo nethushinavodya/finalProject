@@ -76,4 +76,17 @@ public class DiscountModel {
         }
         return 0;
     }
+
+    public static String getCurrentDiscountId() throws SQLException {
+        String sql = "SELECT CONCAT('D', MAX(CAST(SUBSTRING(Discount_Id, 2) AS UNSIGNED))) AS max_d_id FROM Discount";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String did = resultSet.getString(1);
+            return did;
+        }
+        return null;
+    }
 }

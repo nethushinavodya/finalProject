@@ -87,4 +87,17 @@ public class AddServiceModel {
         }
         return null;
     }
+
+    public static String getCurrentSId() throws SQLException {
+        String sql = "SELECT CONCAT('S', MAX(CAST(SUBSTRING(Service_Id, 2) AS UNSIGNED))) AS max_s_id FROM Service";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String sid = resultSet.getString(1);
+            return sid;
+        }
+        return null;
+    }
 }

@@ -89,4 +89,17 @@ public class AddGuestModel {
         }
         return null;
     }
+
+    public static String getCurrentGuestId() throws SQLException {
+        String sql = "SELECT CONCAT('G', MAX(CAST(SUBSTRING(Guest_Id, 2) AS UNSIGNED))) AS max_g_id FROM Guest";
+        PreparedStatement pstm = DBConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String gid = resultSet.getString(1);
+            return gid;
+        }
+        return null;
+    }
 }

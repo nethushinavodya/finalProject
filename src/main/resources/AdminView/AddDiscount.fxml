@@ -24,11 +24,11 @@
 
     <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="36.0" layoutY="91.0" prefHeight="38.0" prefWidth="142.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Discount Id :" textFill="#00b7ff" />
     <Label layoutX="36.0" layoutY="147.0" prefHeight="38.0" prefWidth="142.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Discount Type :" textFill="#00b7ff" />
-    <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="204.0" prefHeight="38.0" prefWidth="142.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Condition :" textFill="#00b7ff" />
+    <Label alignment="CENTER_RIGHT" layoutX="7.0" layoutY="204.0" prefHeight="38.0" prefWidth="171.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Discount Amount :" textFill="#00b7ff" />
     <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="263.0" prefHeight="38.0" prefWidth="142.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Start Date :" textFill="#00b7ff" />
     <TextField fx:id="disId" layoutX="192.0" layoutY="89.0" prefHeight="38.0" prefWidth="339.0" promptText="Enter Discount Id" style="-fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-color: #333333; -fx-text-fill:#ffffff" />
     <TextField fx:id="disType" layoutX="192.0" layoutY="147.0" onKeyReleased="#discountTypeOnKeyRelseased" prefHeight="38.0" prefWidth="333.0" promptText="Enter Discount Type" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10; -fx-background-color: #333333;-fx-text-fill: #ffffff" />
-    <TextField fx:id="disCon" layoutX="192.0" layoutY="204.0" onKeyReleased="#ConditionOnKeyRelease" prefHeight="38.0" prefWidth="333.0" promptText="Condition" style="-fx-border-color: #00b7ff; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-color: #333333;-fx-text-fill: #ffffff" />
+    <TextField fx:id="disCon" layoutX="192.0" layoutY="204.0" onKeyReleased="#ConditionOnKeyRelease" prefHeight="38.0" prefWidth="333.0" promptText="Amount " style="-fx-border-color: #00b7ff; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-color: #333333;-fx-text-fill: #ffffff" />
     <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="323.0" prefHeight="38.0" prefWidth="142.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="End Date :" textFill="#00b7ff" />
 
     <DatePicker fx:id="startDate" layoutX="192.0" layoutY="263.0" prefHeight="38.0" prefWidth="333.0" promptText="Start Date" style="-fx-border-color: #00b7ff; -fx-border-radius: 10; -fx-border-width: 2; -fx-background-radius: 10;" />
@@ -50,7 +50,7 @@
         <columns>
             <TableColumn fx:id="discountId" prefWidth="157.0" style="-fx-text-fill: #000000;" text="Discount Id" />
             <TableColumn fx:id="discountType" prefWidth="127.0" style="-fx-text-fill: #000000;" text="Discount Type" />
-            <TableColumn fx:id="condition" prefWidth="282.0" style="-fx-text-fill: #000000;" text="Condition" />
+            <TableColumn fx:id="condition" prefWidth="282.0" style="-fx-text-fill: #000000;" text="Discount Amount" />
             <TableColumn fx:id="sDate" prefWidth="202.0" style="-fx-text-fill: #000000;" text="Start Date" />
             <TableColumn fx:id="eDate" prefWidth="216.0" style="-fx-text-fill: #000000;" text="End Date" />
         </columns>
