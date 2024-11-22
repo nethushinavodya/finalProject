@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class RoomReserveDTO {
     String reservationId;
     String roomId;
-    String roomPrice;
+    double roomPrice;
 
 }

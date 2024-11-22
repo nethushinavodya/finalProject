@@ -12,14 +12,19 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="1000.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers.ReceptionistDashboardController">
-    <AnchorPane fx:id="mainContentArea" layoutX="325.0" layoutY="80.0" prefHeight="865.0" prefWidth="1139.0" style="-fx-border-color: #FF007F;" />
+   <ImageView fitHeight="865.0" fitWidth="1139.0" layoutX="324.0" layoutY="80.0">
+      <image>
+         <Image url="@../Images/9904c98f469567301daf6e31d230d81a.jpg" />
+      </image>
+   </ImageView>
+    <AnchorPane fx:id="mainContentArea" layoutX="325.0" layoutY="80.0" prefHeight="865.0" prefWidth="1139.0" style="-fx-border-color: #FF007F; -fx-background-color: rgba(42, 46, 55, 0.7);" />
 
     <!-- Header -->
     <VBox alignment="CENTER_RIGHT" layoutX="0.0" layoutY="0.0" prefHeight="80.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
         <children>
             <Button alignment="CENTER_RIGHT" onAction="#logout" prefHeight="70.0" prefWidth="263.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000;" text="Logout        ">
                 <font>
-                    <Font name="System Bold" size="15.0" />
+                    <Font name="Yrsa SemiBold Italic" size="27.0" />
                 </font>
                 <cursor>
                     <Cursor fx:constant="HAND" />
@@ -41,24 +46,10 @@
     <!-- Sidebar -->
     <VBox layoutY="81.0" prefHeight="865.0" prefWidth="325.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
 
-        <!-- Label - "Receptionist Dashboard" -->
-        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="296.0" prefWidth="284.0" text="Receptionist Dashboard" textAlignment="CENTER" textFill="#00b6ff" underline="true" wrapText="true">
-            <font>
-                <Font name="System Bold" size="24.0" />
-            </font>
-         <graphic>
-            <ImageView fitHeight="154.0" fitWidth="154.0">
-               <image>
-                  <Image url="@../Images/dollar_12269629.png" />
-               </image>
-            </ImageView>
-         </graphic>
-        </Label>
-
         <!-- Buttons with bottom border only -->
-        <Button onAction="#navigateToCheckIn" prefHeight="73.0" prefWidth="284.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Check In                 " textAlignment="JUSTIFY" wrapText="true">
+        <Button onAction="#navigateToCheckIn" prefHeight="73.0" prefWidth="329.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Check In                         " textAlignment="JUSTIFY" wrapText="true">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="Yrsa SemiBold Italic" size="27.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />
@@ -74,9 +65,9 @@
             </ImageView>
          </graphic>
         </Button>
-        <Button onAction="#navigateToCheckOut" prefHeight="73.0" prefWidth="287.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Check Out              " textAlignment="JUSTIFY" wrapText="true">
+        <Button onAction="#navigateToCheckOut" prefHeight="73.0" prefWidth="334.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Check Out                      " textAlignment="JUSTIFY" wrapText="true">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="Yrsa SemiBold Italic" size="27.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />
@@ -92,9 +83,9 @@
             </ImageView>
          </graphic>
         </Button>
-        <Button onAction="#navigateToGuestInfo" prefHeight="72.0" prefWidth="288.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Check In Details     " textAlignment="JUSTIFY" wrapText="true">
+        <Button onAction="#navigateToGuestInfo" prefHeight="72.0" prefWidth="331.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Check In Details         " textAlignment="JUSTIFY" wrapText="true">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="Yrsa SemiBold Italic" size="27.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />
@@ -110,9 +101,9 @@
             </ImageView>
          </graphic>
         </Button>
-        <Button onAction="#navigateToRoom" prefHeight="60.0" prefWidth="280.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Rooms                  " textAlignment="JUSTIFY" wrapText="true">
+        <Button onAction="#navigateToRoom" prefHeight="73.0" prefWidth="330.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Rooms                           " textAlignment="JUSTIFY" wrapText="true">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="Yrsa SemiBold Italic" size="27.0" />
             </font>
             <cursor>
                 <Cursor fx:constant="HAND" />

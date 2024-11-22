@@ -9,9 +9,9 @@ import lombok.*;
 
 public class InventoryDTO {
 
-    private int itemId;
+    private String itemId;
     private String itemName;
-    private int itemQuantity;
-    private double itemPrice;
+    private String itemQuantity;
+    private String itemPrice;
 
 }

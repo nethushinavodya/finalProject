@@ -40,11 +40,11 @@ public class InventoryManagementModel {
         return preparedStatement.executeUpdate() > 0;
     }
 
-    public static boolean delete(int itemId) throws SQLException {
+    public static boolean delete(String itemId) throws SQLException {
         String sql = "DELETE FROM Inventory WHERE Inventory_Id = ?";
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, itemId);
+        preparedStatement.setString(1, itemId);
         return preparedStatement.executeUpdate() > 0;
     }
 

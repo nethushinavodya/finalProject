@@ -14,6 +14,6 @@ public class AddToCartTM {
     String noOfGuests;
     String CheckInDate;
     String CheckOutDate;
-    String roomPrice;
+    double roomPrice;
     Button button;
 }

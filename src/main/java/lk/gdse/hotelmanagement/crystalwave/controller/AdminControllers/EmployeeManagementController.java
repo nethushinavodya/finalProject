@@ -131,7 +131,7 @@ public class EmployeeManagementController {
 
 
     public void handleDeleteEmployee(ActionEvent actionEvent) throws SQLException {
-        int eId = Integer.parseInt(eIdtxt.getText());
+        String eId = eIdtxt.getText();
 
         boolean isDelete = EmployeeManagementModel.delete(eId);
         if (isDelete) {
@@ -156,6 +156,7 @@ public class EmployeeManagementController {
             if (isSAved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Employee added successfully").show();
                 setAll();
+                getCurrentEId();
                 clear();
 
             } else {

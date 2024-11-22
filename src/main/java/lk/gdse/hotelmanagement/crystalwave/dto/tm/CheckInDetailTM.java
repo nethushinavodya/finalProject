@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class CheckInDetailTM {
+    String reservationId;
     String guestId;
     String roomId;
-    String reservationId;
     String checkInDate;
     String checkOutDate;
     String amount;

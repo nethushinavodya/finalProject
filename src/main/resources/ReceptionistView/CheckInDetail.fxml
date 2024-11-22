@@ -26,14 +26,14 @@
                     <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="roomId" prefWidth="150.0" text="Room Id">
-                <cellValueFactory>
-                    <PropertyValueFactory property="phone" />
-                </cellValueFactory>
-            </TableColumn>
             <TableColumn fx:id="GuestId" prefWidth="120.0" text="Guest Id">
                 <cellValueFactory>
                     <PropertyValueFactory property="email" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="roomId" prefWidth="150.0" text="Room Id">
+                <cellValueFactory>
+                    <PropertyValueFactory property="phone" />
                 </cellValueFactory>
             </TableColumn>
             <TableColumn fx:id="checkIn" prefWidth="188.0" text="Check In Date">

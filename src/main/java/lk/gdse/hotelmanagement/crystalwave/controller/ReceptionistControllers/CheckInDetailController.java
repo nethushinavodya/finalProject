@@ -56,9 +56,9 @@ public class CheckInDetailController {
     }
 
     private void setCellValue() {
+        reservationId.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         GuestId.setCellValueFactory(new PropertyValueFactory<>("guestId"));
         roomId.setCellValueFactory(new PropertyValueFactory<>("roomId"));
-        reservationId.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
         checkIn.setCellValueFactory(new PropertyValueFactory<>("checkInDate"));
         checkOut.setCellValueFactory(new PropertyValueFactory<>("checkOutDate"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));

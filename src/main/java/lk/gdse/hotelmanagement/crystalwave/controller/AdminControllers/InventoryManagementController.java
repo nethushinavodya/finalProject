@@ -84,7 +84,7 @@ public class InventoryManagementController {
     public void handleDeleteItem(ActionEvent actionEvent) throws SQLException {
 
         try {
-            int itemId = Integer.parseInt(itemIdField.getText());
+            String itemId = itemIdField.getText();
             boolean isDeleted = InventoryManagementModel.delete(itemId);
 
             if (isDeleted) {
@@ -102,10 +102,10 @@ public class InventoryManagementController {
     }
 
     public void handleUpdateItem(ActionEvent actionEvent) throws SQLException {
-        int itemId = Integer.parseInt(itemIdField.getText());
+        String itemId = itemIdField.getText();
         String itemName = itemNameField.getText();
-        int itemQuantity = Integer.parseInt(quantityField.getText());
-        double itemPrice = Double.parseDouble(priceField.getText());
+        String itemQuantity = quantityField.getText();
+        String itemPrice = priceField.getText();
         if (isValid()) {
             try {
                 InventoryDTO inventoryDTO = new InventoryDTO(itemId, itemName, itemQuantity, itemPrice);
@@ -127,10 +127,10 @@ public class InventoryManagementController {
     }
 
     public void handleAddItem(ActionEvent actionEvent) throws SQLException {
-        int itemId = Integer.parseInt(itemIdField.getText());
+        String itemId = itemIdField.getText();
         String itemName = itemNameField.getText();
-        int itemQuantity = Integer.parseInt(quantityField.getText());
-        double itemPrice = Double.parseDouble(priceField.getText());
+        String itemQuantity = quantityField.getText();
+        String itemPrice = priceField.getText();
 
         if (isValid()) {
             try {
@@ -140,6 +140,7 @@ public class InventoryManagementController {
                 if (isSave) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Item added successfully").show();
                     setAll();
+                    getCurrentItemId();
                     clear();
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Item not added successfully").show();
@@ -166,6 +167,7 @@ public class InventoryManagementController {
         itemNameField.clear();
         quantityField.clear();
         priceField.clear();
+
 
     }
 

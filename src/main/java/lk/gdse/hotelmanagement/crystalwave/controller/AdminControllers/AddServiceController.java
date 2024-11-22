@@ -151,11 +151,11 @@ public class AddServiceController {
     }
 
     public void handleSave(ActionEvent actionEvent) throws SQLException {
-        String sId = String.valueOf(Integer.parseInt(serviceId.getText()));
+        String sId =serviceId.getText();
         String sName = ServiceName.getText();
         String desc = serviceDesc.getText();
         String sPrice = servicePrice.getText();
-        String empId = String.valueOf(Integer.parseInt(empIdCmb.getValue()));
+        String empId = empIdCmb.getValue();
 
         Connection connection = DBConnection.getInstance().getConnection();
         connection.setAutoCommit(false);
@@ -172,6 +172,7 @@ public class AddServiceController {
                     if (isSave2) {
                         connection.commit();
                         setAll();
+                        getCurrentSId();
                         clear();
                     } else {
                         connection.rollback();
@@ -190,11 +191,11 @@ public class AddServiceController {
     }
 
     public void handleUpdate(ActionEvent actionEvent) throws SQLException {
-        String sId = String.valueOf(Integer.parseInt(serviceId.getText()));
+        String sId = (serviceId.getText());
         String sName = ServiceName.getText();
         String desc = serviceDesc.getText();
         String sPrice = servicePrice.getText();
-        String empId = String.valueOf(Integer.parseInt(empIdCmb.getValue()));
+        String empId = (empIdCmb.getValue());
 
         if(isValid()) {
             AddServiceDTO addServiceDTO = new AddServiceDTO(sId, sName, desc, sPrice);
@@ -240,6 +241,7 @@ public class AddServiceController {
         ServiceName.clear();
         serviceDesc.clear();
         servicePrice.clear();
+        empIdCmb.setValue(null);
     }
 
     public void sNameOnKeyRelease(KeyEvent keyEvent) {

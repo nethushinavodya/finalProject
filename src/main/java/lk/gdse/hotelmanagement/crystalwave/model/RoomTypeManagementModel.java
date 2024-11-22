@@ -1,8 +1,11 @@
 package lk.gdse.hotelmanagement.crystalwave.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
 import lk.gdse.hotelmanagement.crystalwave.dto.RoomTypeDTO;
 import lk.gdse.hotelmanagement.crystalwave.dto.tm.RoomTypeTm;
+import lk.gdse.hotelmanagement.crystalwave.util.CrudUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -79,4 +82,16 @@ public class RoomTypeManagementModel {
         }
         return null;
     }
+
+    public static String getPrice(String type) throws SQLException {
+        String query = "SELECT Rate FROM Room_Type WHERE RoomType_Id = ?";
+        ResultSet resultSet = CrudUtil.execute(query, type);
+
+        String roomTypePrice = null;
+        if (resultSet.next()) {
+            roomTypePrice = resultSet.getString(1);
+        }
+        return roomTypePrice;
+    }
+
 }

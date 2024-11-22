@@ -53,6 +53,7 @@ public class CheckInController {
     public ComboBox<String> roomIdCmb;
     public ComboBox <String> disIdCmb;
     public TextField conditionField;
+    public TextField roomTypePrice;
 
     ObservableList<AddToCartTM> cartTMS = FXCollections.observableArrayList();
     String PaymentId;
@@ -163,29 +164,33 @@ public class CheckInController {
     }
 
     public void handleAddToCart(ActionEvent actionEvent) throws SQLException {
+        double newtot ;
         String roomId = roomIdCmb.getValue();
         String guestId = guestIdCmb.getValue();
         String noOfGuests = noOfGuest.getText();
         String checkInDate = checkInDatePicker.getValue().toString();
         String checkOutDate = checkOutDatePicker.getValue().toString();
-        String roomPrice = paymentAmountField.getText();
+        Double roomPrice = Double.valueOf(roomTypePrice.getText());
 
+
+        
         if (isValid()) {
             if (disIdCmb.getValue() != null) {
                 System.out.println(disIdCmb.getValue());
                 disId = disIdCmb.getValue();
                 int discout = DiscountModel.search(Integer.parseInt(disIdCmb.getValue()));
                 System.out.println("DIS  " + discout);
-                int price = Integer.parseInt(roomPrice);
+                double price = roomPrice;
                 System.out.println("PRICE" + price);
-                int v = price * discout / 100;
+                double v = price * discout / 100;
                 System.out.println("PRICE" + v);
-                int newprice = price - v;
+                double newprice = price - v;
                 System.out.println("NEWPRICE" + newprice);
 
-                roomPrice = String.valueOf(newprice);
+                roomPrice = newprice;
                 System.out.println("NEWPRICE" + roomPrice);
             }
+
 
             for (AddToCartTM cartTM : cartTMS) {
                 if (cartTM.getRoomId().equals(roomId)) {
@@ -204,6 +209,7 @@ public class CheckInController {
 
                 tableView.refresh();
             });
+            totalPrice.setText("y");
             cartTMS.add(addToCartTM);
         }else {
             new Alert(Alert.AlertType.INFORMATION, "Input Valid Data").show();
@@ -237,7 +243,7 @@ public class CheckInController {
         ArrayList<RoomReserveDTO> reservationDTOS = new ArrayList<>();
 
         for (AddToCartTM addToCartTM : cartTMS) {
-            double price = Double.parseDouble(addToCartTM.getRoomPrice());
+            double price = addToCartTM.getRoomPrice();
             Total+=price;
 
             System.out.println("QWQW");
@@ -312,6 +318,8 @@ public class CheckInController {
         String roomId = roomIdCmb.getValue();
 
         String Type  = ReservationModel.search(roomId);
+        String roomPrice = RoomTypeManagementModel.getPrice(Type);
+        roomTypePrice.setText(roomPrice);
         roomType.setText(Type);
     }
 

@@ -97,6 +97,7 @@ public class AddGuestController {
             if (isSave) {
                 new Alert(Alert.AlertType.INFORMATION, "Guest added successfully").show();
                 setAll();
+                getCurrentGuestId();
                 clear();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Guest not added successfully").show();

@@ -55,11 +55,11 @@ public class EmployeeManagementModel {
         return null;
     }
 
-    public static boolean delete(int eId) throws SQLException {
+    public static boolean delete(String eId) throws SQLException {
         String sql = "delete from Employeement where Employeement_Id = ?";
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, eId);
+        preparedStatement.setString(1, eId);
         return preparedStatement.executeUpdate() > 0;
     }
 

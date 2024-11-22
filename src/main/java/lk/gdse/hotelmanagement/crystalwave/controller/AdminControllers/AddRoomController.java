@@ -180,6 +180,7 @@ public class AddRoomController {
                 if (isSave) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Room added successfully").show();
                     setAll();
+                    getCurrentRoomId();
                     clear();
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Room not added successfully").show();

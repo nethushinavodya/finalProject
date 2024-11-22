@@ -56,31 +56,7 @@ public class DiscountController {
     public void initialize() throws SQLException {
         setCellValue();
         setAll();
-        getCurrentDisID();
-        disId.setDisable(true);
     }
-
-    private void getCurrentDisID() {
-        try {
-            String currentDisId = DiscountModel.getCurrentDiscountId();
-
-            String nextDiscountId = generateNextDiscountId(currentDisId);
-            disId.setText(nextDiscountId);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String generateNextDiscountId(String currentId) {
-        if(currentId != null) {
-            String[] split = currentId.split("D");
-            int idNum = Integer.parseInt(split[1]);
-            return "D" + ++idNum;
-        }
-        return "D1";
-    }
-
 
     private void setCellValue() {
         discountId.setCellValueFactory(new PropertyValueFactory<>("discountId"));
@@ -152,6 +128,7 @@ public class DiscountController {
         endDate.setValue(LocalDate.parse(discountTM.getDiscountEndDate()));
     }
     public void clear(){
+        disId.clear();
         disType.clear();
         disCon.clear();
         startDate.setValue(null);
@@ -174,12 +151,25 @@ public class DiscountController {
             disCon.setStyle("-fx-border-color: red; -fx-border-width: 2px; ; -fx-border-height: 5px;");
         }
     }
+
+    public void disIdOnKeyRelease(KeyEvent keyEvent) {
+        if(disId.getText().matches("\\d{1,}")){
+            disId.setStyle("-fx-border-color: green; -fx-border-width: 2px; ; -fx-border-height: 5px;");
+        }else{
+            disId.setStyle("-fx-border-color: red; -fx-border-width: 2px; ; -fx-border-height: 5px;");
+        }
+    }
+
     public boolean isValid() {
         if (disType.getText().matches("[a-zA-Z ]+")&&
-                disCon.getText().matches("\\d{1,}")) {
+                disCon.getText().matches("\\d{1,}")&&
+                     disId.getText().matches("\\d{1,}")
+        ) {
             return true;
         }else {
             return false;
         }
     }
+
+
 }
