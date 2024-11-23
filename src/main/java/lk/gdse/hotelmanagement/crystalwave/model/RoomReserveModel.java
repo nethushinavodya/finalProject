@@ -17,6 +17,10 @@ public class RoomReserveModel {
 
             }
             boolean isUpdate1 = AddRoomModel.updateAvailable(roomReserve.getRoomId());
+            if (!isUpdate1) {
+                return false;
+            }
+
         }
 
         return true;

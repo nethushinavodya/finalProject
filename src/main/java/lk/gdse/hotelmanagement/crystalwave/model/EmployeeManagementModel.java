@@ -2,6 +2,7 @@ package lk.gdse.hotelmanagement.crystalwave.model;
 
 import lk.gdse.hotelmanagement.crystalwave.db.DBConnection;
 import lk.gdse.hotelmanagement.crystalwave.dto.EmployeeDTO;
+import lk.gdse.hotelmanagement.crystalwave.util.CrudUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,17 +14,13 @@ import java.util.ArrayList;
 public class EmployeeManagementModel {
 
     public static boolean save(EmployeeDTO employeeDTO) throws SQLException {
-        String sql = "INSERT INTO Employeement VALUES (?,?,?,?)";
-
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(1, employeeDTO.getEmployeeId());
-        preparedStatement.setString(2, employeeDTO.getName());
-        preparedStatement.setString(3,employeeDTO.getRole());
-        preparedStatement.setString(4,employeeDTO.getContact());
-
-        return preparedStatement.executeUpdate() > 0;
+        return CrudUtil.execute(
+                "INSERT INTO Employeement VALUES (?,?,?,?)",
+                employeeDTO.getEmployeeId(),
+                employeeDTO.getName(),
+                employeeDTO.getRole(),
+                employeeDTO.getContact()
+        );
     }
 
     public static boolean update(EmployeeDTO employeeDTO) throws SQLException {

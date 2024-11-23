@@ -136,7 +136,7 @@ public class EmployeeManagementController {
         boolean isDelete = EmployeeManagementModel.delete(eId);
         if (isDelete) {
             new Alert(Alert.AlertType.INFORMATION, "Employee deleted successfully").show();
-            setAll();
+            setAll();//set table
             clear();
         }else {
             new Alert(Alert.AlertType.ERROR, "Employee not deleted successfully").show();

@@ -59,6 +59,7 @@ public class CheckInController {
     String PaymentId;
     double Total;
     String disId;
+    double total;
 
     public void initialize() throws SQLException {
         setcmb();
@@ -164,7 +165,6 @@ public class CheckInController {
     }
 
     public void handleAddToCart(ActionEvent actionEvent) throws SQLException {
-        double newtot ;
         String roomId = roomIdCmb.getValue();
         String guestId = guestIdCmb.getValue();
         String noOfGuests = noOfGuest.getText();
@@ -173,47 +173,51 @@ public class CheckInController {
         Double roomPrice = Double.valueOf(roomTypePrice.getText());
 
 
-        
-        if (isValid()) {
-            if (disIdCmb.getValue() != null) {
-                System.out.println(disIdCmb.getValue());
-                disId = disIdCmb.getValue();
-                int discout = DiscountModel.search(Integer.parseInt(disIdCmb.getValue()));
-                System.out.println("DIS  " + discout);
-                double price = roomPrice;
-                System.out.println("PRICE" + price);
-                double v = price * discout / 100;
-                System.out.println("PRICE" + v);
-                double newprice = price - v;
-                System.out.println("NEWPRICE" + newprice);
+        if(checkInDate != null && !checkInDate.isEmpty()){
+            if (isValid() ) {
+                if (disIdCmb.getValue() != null) {
+                    System.out.println(disIdCmb.getValue());
+                    disId = disIdCmb.getValue();
+                    int discout = DiscountModel.search(Integer.parseInt(disIdCmb.getValue()));
+                    System.out.println("DIS  " + discout);
+                    double price = roomPrice;
+                    System.out.println("PRICE" + price);
+                    double v = price * discout / 100;
+                    System.out.println("PRICE" + v);
+                    double newprice = price - v;
+                    System.out.println("NEWPRICE" + newprice);
 
-                roomPrice = newprice;
-                System.out.println("NEWPRICE" + roomPrice);
-            }
-
-
-            for (AddToCartTM cartTM : cartTMS) {
-                if (cartTM.getRoomId().equals(roomId)) {
-                    new Alert(Alert.AlertType.INFORMATION, "Room already exists").show();
-                    return;
+                    roomPrice = newprice;
+                    System.out.println("NEWPRICE" + roomPrice);
                 }
-            }
+                for (AddToCartTM cartTM : cartTMS) {
+                      if (cartTM.getRoomId().equals(roomId)) {
+                          new Alert(Alert.AlertType.INFORMATION, "Room already exists").show();
+                             return;
+                      }
+               }
 
-            Button btn = new Button("Remove");
+        Button btn = new Button("Remove");
 
-            AddToCartTM addToCartTM = new AddToCartTM(roomId, guestId, noOfGuests, checkInDate, checkOutDate, roomPrice, btn);
+        AddToCartTM addToCartTM = new AddToCartTM(roomId, guestId, noOfGuests, checkInDate, checkOutDate, roomPrice, btn);
 
-            btn.setOnAction(event -> {
+        btn.setOnAction(event -> {
 
-                cartTMS.remove(addToCartTM);
+            cartTMS.remove(addToCartTM);
 
-                tableView.refresh();
-            });
-            totalPrice.setText("y");
-            cartTMS.add(addToCartTM);
-        }else {
-            new Alert(Alert.AlertType.INFORMATION, "Input Valid Data").show();
-        }
+            tableView.refresh();
+            setTotal();
+        });
+        cartTMS.add(addToCartTM);
+        setTotal();
+    }else {
+        new Alert(Alert.AlertType.INFORMATION, "Input Valid Data").show();
+    }
+}else {
+    new Alert(Alert.AlertType.INFORMATION, "Please enter a valid date").show();
+}
+        
+
     }
 
     public void guestCmb(ActionEvent actionEvent) throws SQLException {
@@ -228,51 +232,59 @@ public class CheckInController {
     }
 
     public void handleReserve(ActionEvent actionEvent) throws SQLException {
-        Total = 0;
-
-        System.out.println("clicked");
-        String reservationId = reserveId.getText();
-        String roomId = roomIdCmb.getValue();
-        String guestId = guestIdCmb.getSelectionModel().getSelectedItem();
-        String noOfGuests = noOfGuest.getText();
-        String paymentmethod = (String) paymentMethodComboBox.getValue();
-        String checkInDate = checkInDatePicker.getValue().toString();
-        String checkOutDate = checkOutDatePicker.getValue().toString();
-        String roomPrice = paymentAmountField.getText();
-
-        ArrayList<RoomReserveDTO> reservationDTOS = new ArrayList<>();
-
-        for (AddToCartTM addToCartTM : cartTMS) {
-            double price = addToCartTM.getRoomPrice();
-            Total+=price;
-
-            System.out.println("QWQW");
-            System.out.println(addToCartTM);
-            RoomReserveDTO roomReserveDTO = new RoomReserveDTO(
-                    reservationId,
-                    addToCartTM.getRoomId(),
-                    addToCartTM.getRoomPrice()
-
-            );
-            reservationDTOS.add(roomReserveDTO);
-        }
-
-        ReservationDTO reservationDTO = new ReservationDTO(reservationId,guestId,roomId,checkInDate,checkOutDate,reservationDTOS);
-        System.out.println(reservationDTO);
-        System.out.println("discount id  " + disId);
-
-        boolean isSave = ReservationModel.saveReservation(reservationDTO,Total,PaymentId,paymentmethod,disId);
-
-
-        if (isSave) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Reservation has been saved successfully").showAndWait();
-            getCurrentid();
-            getPaymentid();
+        double payment= Double.parseDouble(paymentAmountField.getText());
+        System.out.println(payment);
+        System.out.println(total);
+        if (payment>=total){
             Total = 0;
-            cartTMS.clear();
-            tableView.refresh();
+
+            System.out.println("clicked");
+            String reservationId = reserveId.getText();
+            String roomId = roomIdCmb.getValue();
+            String guestId = guestIdCmb.getSelectionModel().getSelectedItem();
+            String noOfGuests = noOfGuest.getText();
+            String paymentmethod = (String) paymentMethodComboBox.getValue();
+            String checkInDate = checkInDatePicker.getValue().toString();
+            String checkOutDate = checkOutDatePicker.getValue().toString();
+            String roomPrice = paymentAmountField.getText();
+
+            ArrayList<RoomReserveDTO> reservationDTOS = new ArrayList<>();
+
+            for (AddToCartTM addToCartTM : cartTMS) {
+                double price = addToCartTM.getRoomPrice();
+                Total+=price;
+
+                System.out.println("QWQW");
+                System.out.println(addToCartTM);
+                RoomReserveDTO roomReserveDTO = new RoomReserveDTO(
+                        reservationId,
+                        addToCartTM.getRoomId(),
+                        addToCartTM.getRoomPrice()
+
+                );
+                reservationDTOS.add(roomReserveDTO);
+            }
+
+            ReservationDTO reservationDTO = new ReservationDTO(reservationId,guestId,roomId,checkInDate,checkOutDate,reservationDTOS);
+            System.out.println(reservationDTO);
+            System.out.println("discount id  " + disId);
+
+            boolean isSave = ReservationModel.saveReservation(reservationDTO,Total,PaymentId,paymentmethod,disId);
+
+
+            if (isSave) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Reservation has been saved successfully").showAndWait();
+                getCurrentid();
+                getPaymentid();
+                Total = 0;
+                cartTMS.clear();
+                tableView.refresh();
+                totalPrice.setText(null);
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Reservation has not been saved successfully").showAndWait();
+            }
         }else {
-            new Alert(Alert.AlertType.ERROR, "Reservation has not been saved successfully").showAndWait();
+            new Alert(Alert.AlertType.ERROR, "Input Valid Payment Amount").show();
         }
     }
     private void getCurrentid() {
@@ -294,6 +306,14 @@ public class CheckInController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setTotal(){
+         total =0.0;
+        for(AddToCartTM addToCartTM : cartTMS){
+            total += addToCartTM.getRoomPrice();
+        }
+        totalPrice.setText(String.valueOf(total));
     }
 
     private String generateNextReservationId(String currentId) {
@@ -347,8 +367,7 @@ public class CheckInController {
         }
     }
     public boolean isValid() {
-        if(paymentAmountField.getText().matches("\\d{4,}")&&
-                noOfGuest.getText().matches("\\d{1,}")){
+        if(noOfGuest.getText().matches("\\d{1,}")){
             return true;
         }else {
             return false;

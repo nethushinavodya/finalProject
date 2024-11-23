@@ -1,5 +1,6 @@
 package lk.gdse.hotelmanagement.crystalwave.controller.ReceptionistControllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -46,6 +47,9 @@ public class ReceptionistDashboardController {
     public void navigateToRoom() {
         loadPage("/ReceptionistView/RoomDetailPage.fxml");
     }
+    public void navigateToService(ActionEvent actionEvent) {
+        loadPage("/ReceptionistView/ServiceReservation.fxml");
+    }
     private void loadPage(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -70,4 +74,6 @@ public class ReceptionistDashboardController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
 }

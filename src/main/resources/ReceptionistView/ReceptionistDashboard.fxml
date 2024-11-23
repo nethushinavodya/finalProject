@@ -19,30 +19,6 @@
    </ImageView>
     <AnchorPane fx:id="mainContentArea" layoutX="325.0" layoutY="80.0" prefHeight="865.0" prefWidth="1139.0" style="-fx-border-color: #FF007F; -fx-background-color: rgba(42, 46, 55, 0.7);" />
 
-    <!-- Header -->
-    <VBox alignment="CENTER_RIGHT" layoutX="0.0" layoutY="0.0" prefHeight="80.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
-        <children>
-            <Button alignment="CENTER_RIGHT" onAction="#logout" prefHeight="70.0" prefWidth="263.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000;" text="Logout        ">
-                <font>
-                    <Font name="Yrsa SemiBold Italic" size="27.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-                <effect>
-                    <InnerShadow />
-                </effect>
-                <graphic>
-                    <ImageView fitHeight="60.0" fitWidth="66.0">
-                        <image>
-                            <Image url="@../Images/logout_10008402.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
-        </children>
-    </VBox>
-
     <!-- Sidebar -->
     <VBox layoutY="81.0" prefHeight="865.0" prefWidth="325.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
 
@@ -119,10 +95,62 @@
             </ImageView>
          </graphic>
         </Button>
+      <Button layoutX="11.0" layoutY="241.0" onAction="#navigateToService" prefHeight="73.0" prefWidth="330.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000; -fx-border-color: transparent transparent FF007FFF transparent; -fx-border-width: 0 0 3 0;" text="Services                         " textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font name="Yrsa SemiBold Italic" size="27.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <InnerShadow />
+         </effect>
+         <graphic>
+            <ImageView fitHeight="58.0" fitWidth="65.0">
+               <image>
+                  <Image url="@../Images/hotel1.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </VBox>
 
     <!-- Footer -->
     <HBox alignment="CENTER" layoutY="945.0" prefHeight="55.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
         <Label style="-fx-text-fill: FF007FFF;" text="CRYSTALWAVE HOTEL © 2024" />
     </HBox>
+
+    <!-- Header -->
+    <VBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="1500.0" style="-fx-background-color: #000000; -fx-border-color: #FF007F;">
+        <children>
+            <Button alignment="CENTER_RIGHT" onAction="#logout" prefHeight="70.0" prefWidth="263.0" style="-fx-text-fill: FF007FFF; -fx-background-color: #000000;" text="Logout        ">
+                <font>
+                    <Font name="Yrsa SemiBold Italic" size="27.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <effect>
+                    <InnerShadow />
+                </effect>
+                <graphic>
+                    <ImageView fitHeight="60.0" fitWidth="66.0">
+                        <image>
+                            <Image url="@../Images/logout_10008402.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </children>
+    </VBox>
+   <Label layoutX="87.0" prefHeight="75.0" prefWidth="323.0" text="Receptionist Page" textFill="#00c3ff">
+      <font>
+         <Font name="padmaa-Bold.1.1" size="34.0" />
+      </font>
+   </Label>
+   <ImageView fitHeight="67.0" fitWidth="72.0" layoutX="8.0" layoutY="9.0">
+      <image>
+         <Image url="@../Images/cashier_17946124.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

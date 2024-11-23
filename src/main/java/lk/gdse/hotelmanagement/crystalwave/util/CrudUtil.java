@@ -6,25 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
-
-/**
- * --------------------------------------------
- * Author: R.I.B. Shamodha Sahan Rathnamalala
- * GitHub: https://github.com/shamodhas
- * Website: https://shamodha.live
- * --------------------------------------------
- * Created: 10/11/2024 8:56 AM
- * Project: supermarketfx-71
- * --------------------------------------------
- **/
 public class CrudUtil {
 
     // This class contains utility methods for executing CRUD operations (Create, Read, Update, Delete) with the database.
     public static <T>T execute(String sql,Object... obj) throws SQLException {
-        // A generic method to execute SQL queries, with a flexible return type T.
-        // It accepts an SQL statement and a variable number of parameters (obj) to insert into the SQL query.
+
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement pst = connection.prepareStatement(sql);
 
