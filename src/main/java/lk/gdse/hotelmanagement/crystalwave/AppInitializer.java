@@ -18,10 +18,7 @@ public class AppInitializer extends Application {
 
        /* Parent load = FXMLLoader.load(getClass().getResource("/AdminView/InventoryManagement.fxml"));
 */
-/*
-
-        Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ReceptionistDashboard.fxml"));
-*/        /*Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ServiceReservation.fxml"));
+       /*Parent load = FXMLLoader.load(getClass().getResource("/ReceptionistView/ServiceReservation.fxml"));
 */
 
         Parent load = FXMLLoader.load(getClass().getResource("/HomeView/LoginPage.fxml"));
