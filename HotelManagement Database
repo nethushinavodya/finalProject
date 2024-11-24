@@ -1,0 +1,267 @@
+CREATE TABLE User (
+    User_Id INT PRIMARY KEY AUTO_INCREMENT,
+    User_Name VARCHAR(255),
+    Role VARCHAR(100)
+);
+
+INSERT INTO User (User_Name, Role) VALUES 
+('Nimal Perera', 'Admin'), 
+('Sunethra Kumari', 'Receptionist'),
+('Ruwan Fernando', 'Manager');
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Guest (
+    Guest_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255),
+    Contact_No VARCHAR(20),
+    Address VARCHAR(255),
+    Email VARCHAR(100),
+   
+);
+
+INSERT INTO Guest (Name, Contact_No, Address, Email, User_Id) VALUES 
+('Anusha Silva', '0771234567', 'No. 23, Kandy Road, Colombo', 'anusha@gmail.com'),
+('Kasun Jayasinghe', '0772345678', 'No. 45, Galle Road, Galle', 'kasun@gmail.com'),
+('Dilani Perera', '0773456789', 'No. 67, Temple Road, Kandy', 'dilani@gmail.com');
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Room_Type (
+    RoomType_Id INT PRIMARY KEY AUTO_INCREMENT,
+    RoomType VARCHAR(50),
+    Description TEXT,
+    Rate DECIMAL(10, 2)
+);
+
+INSERT INTO Room_Type (RoomType, Description, Rate) VALUES 
+('Single', 'Single bed with basic amenities', 25000.00), 
+('Double', 'Double bed with basic amenities', 35000.00), 
+('Suite', 'Luxury suite with premium amenities', 75000.00);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Room (
+    Room_Id INT PRIMARY KEY AUTO_INCREMENT,
+    RoomNumber VARCHAR(10),
+    RoomStatus VARCHAR(50),
+    RoomType_Id INT,
+    FOREIGN KEY (RoomType_Id) REFERENCES Room_Type(RoomType_Id)
+);
+
+
+INSERT INTO Room (RoomNumber, RoomStatus, RoomType_Id) VALUES 
+('201', 'Available', 1), 
+('202', 'Occupied', 2), 
+('301', 'Available', 3);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Reservation (
+    Reservation_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Guest_Id INT,
+    Room_Id INT,
+    CheckIn_Date DATE,
+    CheckOut_Date DATE,
+    Status VARCHAR(50),
+    NoOfGuest INT,
+    FOREIGN KEY (Guest_Id) REFERENCES Guest(Guest_Id),
+    FOREIGN KEY (Room_Id) REFERENCES Room(Room_Id)
+);
+
+INSERT INTO Reservation (Guest_Id, Room_Id, CheckIn_Date, CheckOut_Date, Status, NoOfGuest) VALUES 
+(1, 1, '2023-12-01', '2023-12-05', 'Confirmed', 1), 
+(2, 2, '2023-12-03', '2023-12-07', 'Checked Out', 2), 
+(3, 3, '2024-01-01', '2024-01-05', 'Confirmed', 3);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Inventory (
+    Inventory_Id INT PRIMARY KEY AUTO_INCREMENT,
+    ItemName VARCHAR(255),
+    Quantity INT,
+    Price DECIMAL(10, 2)
+ 
+);
+
+INSERT INTO Inventory (ItemName, Quantity, Price) VALUES 
+('Towel', 50, 500.00), 
+('Shampoo', 30, 250.00), 
+('Bathrobe', 20, 1500.00);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Billing (
+    Bill_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Reservation_Id INT,
+    TotalAmount DECIMAL(10, 2),
+    Bill_Date DATE,
+    FOREIGN KEY (Reservation_Id) REFERENCES Reservation(Reservation_Id)
+);
+
+INSERT INTO Billing (Reservation_Id, TotalAmount, Bill_Date) VALUES 
+(1, 125000.00, '2023-12-05'), 
+(2, 245000.00, '2023-12-07'), 
+(3, 375000.00, '2024-01-05');
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Discount (
+    Discount_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Bill_Id INT,
+    Discount_Type VARCHAR(50),
+    Conditions TEXT,
+    Start_Date DATE,
+    End_Date DATE,
+    Description TEXT,
+    FOREIGN KEY (Bill_Id) REFERENCES Billing(Bill_Id)
+);
+
+INSERT INTO Discount (Bill_Id, Discount_Type, Conditions, Start_Date, End_Date, Description) VALUES 
+(1, 'Festival', '15% off during December', '2023-12-01', '2023-12-31', 'December Festival Discount'), 
+(2, 'Loyalty', '10% off for returning guests', '2023-01-01', '2023-12-31', 'Loyal Customer Discount'), 
+(3, 'Promotional', '20% off for new guests', '2024-01-01', '2024-01-31', 'New Year Promotion');
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Payment (
+    Payment_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Payment_Method VARCHAR(50),
+    Amount_Paid DECIMAL(10, 2),
+    Payment_Date DATE,
+    Reservation_Id INT,
+    Discount_Id INT,
+    FOREIGN KEY (Reservation_Id) REFERENCES Reservation(Reservation_Id) on update cascade on delete cascade,
+    FOREIGN KEY (Discount_Id) REFERENCES Discount(Discount_Id) on update cascade on delete cascade
+);
+
+INSERT INTO Payment (Payment_Method, Amount_Paid, Payment_Date, Reservation_Id) VALUES 
+('Credit Card', 125000.00, '2023-12-05', 1), 
+('Cash', 245000.00, '2023-12-07', 2), 
+('Debit Card', 375000.00, '2024-01-05', 3);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Report (
+    Report_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Bill_Id INT,
+    Payment_Id INT,
+    CreateDate DATE,
+    FOREIGN KEY (Bill_Id) REFERENCES Billing(Bill_Id),
+    FOREIGN KEY (Payment_Id) REFERENCES Payment(Payment_Id)
+);
+
+INSERT INTO Report (Bill_Id, Payment_Id, CreateDate) VALUES 
+(1, 1, '2023-12-06'), 
+(2, 2, '2023-12-08'), 
+(3, 3, '2024-01-06');
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Service (
+    Service_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Service_Name VARCHAR(255),
+    Description TEXT,
+    Price DECIMAL(10, 2)
+);
+
+INSERT INTO Service (Service_Name, Description, Price) VALUES 
+('Room Cleaning', 'Daily room cleaning service', 1500.00), 
+('Laundry', 'Laundry service for guests', 2000.00), 
+('Spa', 'Relaxing spa session', 5000.00);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Employeement (
+    Employeement_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255),
+    Role VARCHAR(50),
+    ContactNo VARCHAR(20)
+);
+
+INSERT INTO Employeement (Name, Role, ContactNo) VALUES 
+('Sunil Fernando', 'Housekeeper', '0712345678'), 
+('Kumari De Silva', 'Spa Therapist', '0719876543'), 
+('Amal Jayawardena', 'Maintenance', '0713334444');
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Service_Billing (
+    Bill_Id INT,
+    Service_Id INT,
+    PRIMARY KEY (Bill_Id, Service_Id),
+    FOREIGN KEY (Bill_Id) REFERENCES Billing(Bill_Id),
+    FOREIGN KEY (Service_Id) REFERENCES Service(Service_Id)
+);
+
+INSERT INTO Service_Billing (Bill_Id, Service_Id) VALUES 
+(1, 1), 
+(2, 2), 
+(3, 3);
+----------------------------------------------------------------------------------------------
+CREATE TABLE Room_Inventory (
+        Room_Id INT,
+         Inventory_Id INT,
+         FOREIGN KEY (Room_Id) REFERENCES Room(Room_Id) on update cascade on delete cascade,
+         FOREIGN KEY (Inventory_Id) REFERENCES Inventory(Inventory_Id) on update cascade on delete cascade
+     );
+INSERT INTO Room_Inventory (Room_Id, Inventory_Id) VALUES 
+(1, 1), 
+(2, 2), 
+(3, 3);
+
+----------------------------------------------------------------------------------------------
+
+CREATE TABLE Room_Inventory (
+    Room_Id INT,
+    Inventory_Id INT,
+    FOREIGN KEY (Room_Id) REFERENCES Room(Room_Id),
+    FOREIGN KEY (Inventory_Id) REFERENCES Inventory(Inventory_Id)
+);
+
+
+INSERT INTO Room_Inventory (Room_Id, Inventory_Id) VALUES 
+(1, 1), 
+(2, 2), 
+(3, 3);
+-------------------------------------------------------------------------------------------
+CREATE TABLE Reservation_Room(
+	Reservation_Id INT,
+	Room_Id INT,
+	FOREIGN KEY (Reservation_Id)REFERENCES Reservation(Reservation_Id)on update cascade on delete cascade,
+	FOREIGN KEY (Room_Id)REFERENCES Room(Room_Id)on update cascade on delete cascade
+);
+
+INSERT INTO Reservation_Room(Reservation_Id,Room_Id) Values
+(1,2),
+(2,1),
+(3,2);
+
+
+
+................................................
+
+
+SELECT 
+    g.Name AS Guest_Name, 
+    r.Reservation_Id, 
+    r.Room_Id, 
+    r.CheckIn_Date, 
+    r.CheckOut_Date, 
+    b.Bill_Id, 
+    b.TotalAmount AS Bill_Amount, 
+    b.Bill_Date, 
+    p.Payment_Method, 
+    p.Amount_Paid, 
+    p.Payment_Date
+FROM 
+    Guest g
+JOIN 
+    Reservation r ON g.Guest_Id = r.Guest_Id
+LEFT JOIN 
+    Billing b ON r.Reservation_Id = b.Reservation_Id
+LEFT JOIN 
+    Payment p ON r.Reservation_Id = p.Reservation_Id
+WHERE 
+    r.Reservation_Id = 3;
+

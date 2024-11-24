@@ -1,0 +1,203 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="nethushi" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb3a4739-edbf-4df5-8258-ac620207ea0a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (11)"/>
+	<parameter name="rid" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT
+    r.Reservation_Id,
+    MAX(g.Name) AS GuestName,
+    MAX(g.Contact_No) AS ContactNo,
+    MAX(g.Address) AS GuestAddress,
+    MAX(g.Email) AS GuestEmail,
+    MAX(p.Payment_Id) AS PaymentId,
+    MAX(p.Payment_Method) AS PaymentMethod,
+    MAX(p.Amount_Paid) AS AmountPaid,
+    MAX(p.Payment_Date) AS PaymentDate,
+    MAX(b.Bill_Id) AS BillId,
+    MAX(b.TotalAmount) AS TotalAmount,
+    MAX(b.Bill_Date) AS BillDate
+FROM
+    Reservation r
+LEFT JOIN
+    Guest g ON r.Guest_Id = g.Guest_Id
+LEFT JOIN
+    Payment p ON r.Reservation_Id = p.Reservation_Id
+LEFT JOIN
+    Billing b ON r.Reservation_Id = b.Reservation_Id
+WHERE
+    r.Reservation_Id = $P{rid}
+GROUP BY
+    r.Reservation_Id
+]]></query>
+	<field name="Reservation_Id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Reservation_Id"/>
+		<property name="com.jaspersoft.studio.field.label" value="Reservation_Id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservation"/>
+	</field>
+	<field name="GuestName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="GuestName"/>
+		<property name="com.jaspersoft.studio.field.label" value="GuestName"/>
+	</field>
+	<field name="ContactNo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ContactNo"/>
+		<property name="com.jaspersoft.studio.field.label" value="ContactNo"/>
+	</field>
+	<field name="GuestAddress" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="GuestAddress"/>
+		<property name="com.jaspersoft.studio.field.label" value="GuestAddress"/>
+	</field>
+	<field name="GuestEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="GuestEmail"/>
+		<property name="com.jaspersoft.studio.field.label" value="GuestEmail"/>
+	</field>
+	<field name="PaymentId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="PaymentId"/>
+		<property name="com.jaspersoft.studio.field.label" value="PaymentId"/>
+	</field>
+	<field name="PaymentMethod" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PaymentMethod"/>
+		<property name="com.jaspersoft.studio.field.label" value="PaymentMethod"/>
+	</field>
+	<field name="AmountPaid" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="AmountPaid"/>
+		<property name="com.jaspersoft.studio.field.label" value="AmountPaid"/>
+	</field>
+	<field name="PaymentDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="PaymentDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="PaymentDate"/>
+	</field>
+	<field name="BillId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="BillId"/>
+		<property name="com.jaspersoft.studio.field.label" value="BillId"/>
+	</field>
+	<field name="TotalAmount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TotalAmount"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalAmount"/>
+	</field>
+	<field name="BillDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="BillDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="BillDate"/>
+	</field>
+	<group name="Reservation_Id">
+		<expression><![CDATA[$F{Reservation_Id}]]></expression>
+	</group>
+	<group name="GuestName">
+		<expression><![CDATA[$F{GuestName}]]></expression>
+	</group>
+	<group name="ContactNo">
+		<expression><![CDATA[$F{ContactNo}]]></expression>
+	</group>
+	<group name="GuestAddress">
+		<expression><![CDATA[$F{GuestAddress}]]></expression>
+	</group>
+	<group name="GuestEmail">
+		<expression><![CDATA[$F{GuestEmail}]]></expression>
+	</group>
+	<group name="PaymentId">
+		<expression><![CDATA[$F{PaymentId}]]></expression>
+	</group>
+	<group name="PaymentMethod">
+		<expression><![CDATA[$F{PaymentMethod}]]></expression>
+	</group>
+	<group name="AmountPaid">
+		<expression><![CDATA[$F{AmountPaid}]]></expression>
+	</group>
+	<group name="PaymentDate">
+		<expression><![CDATA[$F{PaymentDate}]]></expression>
+	</group>
+	<group name="BillId">
+		<expression><![CDATA[$F{BillId}]]></expression>
+	</group>
+	<group name="TotalAmount">
+		<expression><![CDATA[$F{TotalAmount}]]></expression>
+	</group>
+	<group name="BillDate">
+		<expression><![CDATA[$F{BillDate}]]></expression>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="91" splitType="Stretch">
+		<element kind="staticText" uuid="cb3e560b-7e33-4dd1-97a1-1e3bd2e65a9f" x="79" y="10" width="397" height="50" fontSize="30.0" hTextAlign="Center">
+			<text><![CDATA[Crystal Wave]]></text>
+		</element>
+		<element kind="rectangle" uuid="bb84b8b8-91bb-46ec-8172-68dc1af0ec8d" mode="Opaque" x="-20" y="50" width="595" height="10" backcolor="#4F4F4F" radius="21"/>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="textField" uuid="dd48fff0-c474-4473-a03b-8682985a2b9f" x="79" y="11" width="100" height="30">
+			<expression><![CDATA[$F{Reservation_Id}]]></expression>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="12d782c5-ef99-47d7-96f5-c77dc4b90351"/>
+		</element>
+		<element kind="staticText" uuid="1d870d2c-71a9-4dd3-ac9c-439f85523109" x="-20" y="11" width="100" height="30">
+			<text><![CDATA[Reservation_Id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="12d782c5-ef99-47d7-96f5-c77dc4b90351"/>
+		</element>
+		<element kind="staticText" uuid="dd96d2bf-f16b-4cb0-b6f8-19b0ccfdd0fe" x="210" y="30" width="118" height="30" fontSize="20.0">
+			<text><![CDATA[Guest Bill]]></text>
+		</element>
+		<element kind="textField" uuid="6bc07f4d-5cde-4fcf-97ce-3aa8bad5be14" x="460" y="0" width="100" height="30">
+			<expression><![CDATA[$F{PaymentDate}]]></expression>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="320" splitType="Stretch">
+			<element kind="textField" uuid="e3aad7a2-264b-4bb2-a74e-a0249587ff45" x="289" y="24" width="136" height="22" fontSize="16.0">
+				<expression><![CDATA[$F{GuestName}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdfc6feb-aaaf-4026-9379-bc2668559363"/>
+			</element>
+			<element kind="staticText" uuid="a33fa69c-a548-4360-9194-d891d268e8fc" x="130" y="23" width="130" height="23" fontSize="16.0">
+				<text><![CDATA[GuestName : ]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdfc6feb-aaaf-4026-9379-bc2668559363"/>
+			</element>
+			<element kind="textField" uuid="e94a65fc-7ecb-4cb3-a35c-42758ffec2bf" x="290" y="46" width="134" height="24" fontSize="16.0">
+				<expression><![CDATA[$F{ContactNo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e37e82a-e0ea-42a0-abfd-7a96c8806dd5"/>
+			</element>
+			<element kind="staticText" uuid="60f7a664-fdc6-437b-ae5f-26026b58d4a4" x="130" y="46" width="130" height="24" fontSize="16.0">
+				<text><![CDATA[ContactNo : ]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e37e82a-e0ea-42a0-abfd-7a96c8806dd5"/>
+			</element>
+			<element kind="textField" uuid="28e44ed2-a53c-454b-a01f-e208863ee392" x="290" y="70" width="150" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{PaymentMethod}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="669c6c0c-ba47-45b9-9192-6b1745feb1bc"/>
+			</element>
+			<element kind="staticText" uuid="355a0c59-d2fe-4bd2-83d1-cd03d395580c" x="130" y="70" width="150" height="30" fontSize="16.0">
+				<text><![CDATA[PaymentMethod : ]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="669c6c0c-ba47-45b9-9192-6b1745feb1bc"/>
+			</element>
+			<element kind="textField" uuid="f3d778f2-339b-40a7-834e-6c08c9c84a98" x="467" y="99" width="100" height="30">
+				<expression><![CDATA[$F{TotalAmount}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5367f5b1-60d5-423f-8655-f1f5a1fb7e3a"/>
+			</element>
+			<element kind="textField" uuid="c590d2af-1b9a-44d4-9b6d-006c463cc68e" x="289" y="100" width="150" height="30" fontSize="16.0">
+				<expression><![CDATA[$F{AmountPaid}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="593e0ab2-1564-461a-bd2b-782928bfbdc5"/>
+			</element>
+			<element kind="staticText" uuid="9a446bba-6115-453b-b938-e73d31045861" x="130" y="99" width="130" height="30" fontSize="16.0">
+				<text><![CDATA[AmountPaid :]]></text>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="593e0ab2-1564-461a-bd2b-782928bfbdc5"/>
+			</element>
+			<element kind="textField" uuid="e453a3f8-5d3d-4594-a800-81dff24353b7" x="467" y="129" width="100" height="30">
+				<expression><![CDATA[$F{BillDate}]]></expression>
+			</element>
+			<element kind="staticText" uuid="3db56cf2-185a-41de-ae7e-0d7681365a16" x="189" y="200" width="101" height="30" fontSize="20.0">
+				<text><![CDATA[Contact Us]]></text>
+			</element>
+			<element kind="staticText" uuid="d54065e1-9e38-4acd-aead-08f2493d969e" x="160" y="240" width="168" height="20" fontSize="15.0">
+				<text><![CDATA[Mobile :  0778787788]]></text>
+			</element>
+			<element kind="staticText" uuid="5b36792a-c45a-4e14-9a06-cdf287ca4bc6" x="160" y="263" width="230" height="30" fontSize="16.0">
+				<text><![CDATA[Email : Crystalwave12@gmail.com]]></text>
+			</element>
+			<element kind="staticText" uuid="48d61e54-6f01-4755-8d1a-0734e7f2bb04" x="160" y="290" width="265" height="30" fontSize="18.0">
+				<text><![CDATA[web : www.crystalwave.com]]></text>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="58" splitType="Stretch">
+		<element kind="staticText" uuid="881ccc69-576e-4c68-931b-3f0b0b26f71b" x="-3" y="26" width="570" height="30" fontSize="17.0">
+			<text><![CDATA[Thank you for choosing Crystal Wave. We hope you enjoyed your stay!]]></text>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
